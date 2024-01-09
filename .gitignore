@@ -1,0 +1,35 @@
+# OSX, Linux, Windows 환경에 해당하는 시스템 파일들
+.DS_Store
+Thumbs.db
+
+# 프로젝트 의존성을 설치할 때 생성되는 node_modules 디렉토리
+node_modules/
+
+# iOS의 빌드 아웃풋과 디렉토리
+ios/build/
+ios/Pods/
+ios/Podfile.lock
+
+# Android의 빌드 아웃풋과 디렉토리
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+
+# 개발 환경 설정과 관련된 파일
+.env
+*.log
+npm-debug.log*
+
+# 사용자별 설정 파일
+*.iml
+*.idea/
+.vscode/
+
+# 기타 임시 파일들
+*.swp
+*.swo
+
+
+#vendor
+vendor/
