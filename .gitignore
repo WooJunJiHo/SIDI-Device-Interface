@@ -34,4 +34,4 @@ npm-debug.log*
 #vendor
 vendor/
 
-server
+server.js
