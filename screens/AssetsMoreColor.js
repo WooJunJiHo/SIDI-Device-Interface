@@ -10,6 +10,8 @@ import axios from 'axios';
 import DarkMode from '../components/styles/DarkMode'
 
 const AssetsMoreColor = (props) => {
+
+    const endPoint = '192.168.0.6'
     const RESULT = 'Apple Watch'  
 
     const [users, setUsers] = useState([]);
@@ -23,7 +25,7 @@ const AssetsMoreColor = (props) => {
 
     useEffect(() => {
         // 백엔드 서버의 API를 호출하여 데이터를 가져옵니다.
-        axios.get('http://172.30.112.155:3000/getUsers')
+        axios.get(`http://${endPoint}:3000/getUsers`)
             .then(response => {
                 setUsers(response.data);
             })
@@ -32,7 +34,7 @@ const AssetsMoreColor = (props) => {
             });
 
         // 백엔드 서버의 API를 호출하여 데이터를 가져옵니다.
-        axios.get('http://172.30.112.155:3000/getInfo')
+        axios.get(`http://${endPoint}:3000/getInfo`)
             .then(response => {
                 const temp = response.data.filter(info => info.RESULT == asset)
                 setInfos(temp);

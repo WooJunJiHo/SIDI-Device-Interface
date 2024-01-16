@@ -6,8 +6,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // 화면 컴포넌트들 (예시로 2개 추가)
 import AssetsMoreColor from './screens/AssetsMoreColor';
-import Home from './screens/Home';
+import Main from './screens/Main';
 import TotalAsset from './screens/TotalAsset';
+
+
+//탭바 스타일
+import Icon from './components/styles/Icons';
+import TabBar from './components/styles/TabBar';
 
 
 
@@ -17,18 +22,18 @@ const Stack = createStackNavigator();
 
 
 
-const HomeStack = () => (
+const MainStack = () => (
     <Stack.Navigator>
-        <Stack.Screen 
-            name="Main" 
-            component={Home} 
+        <Stack.Screen
+            name="Main"
+            component={Main}
             options={{ headerShown: false }}
         />
-        <Stack.Screen 
-            name="TotalAsset" 
-            component={TotalAsset} 
-            options={{ 
-                headerShown: false, 
+        <Stack.Screen
+            name="TotalAsset"
+            component={TotalAsset}
+            options={{
+                headerShown: false,
             }}
         />
     </Stack.Navigator>
@@ -42,9 +47,23 @@ const HomeStack = () => (
 export default function App() {
     return (
         <NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen name='Home' component={HomeStack} options={{ headerShown: false }}/>
-                <Tab.Screen name='AssetsMoreColor' component={AssetsMoreColor} options={{ headerShown: false }}/>
+            <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
+                <Tab.Screen
+                    name='Home'
+                    component={MainStack}
+                    options={{
+                        headerShown: false,
+                        tabBarLabel: () => null,
+                        tabBarIcon: () => (
+                            <Icon
+                                name='home-outline'
+                                size={24}
+                                color='black'
+                            />
+                        ),
+                    }}
+                />
+                <Tab.Screen name='AssetsMoreColor' component={AssetsMoreColor} options={{ headerShown: false }} />
             </Tab.Navigator>
         </NavigationContainer>
     );
