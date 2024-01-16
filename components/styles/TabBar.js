@@ -22,8 +22,11 @@ const TabBar = ({ state, descriptors, navigation }) => {
                     width: '100%',
                     height: '100%',
                     backgroundColor: '#242424', // 원하는 색상으로 변경
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
+                    borderTopLeftRadius: 15,
+                    borderTopRightRadius: 15,
+                    borderWidth: 1,
+                    borderColor: '#767676',
+                    borderBottomWidth: 0,
                 }}
             >
                 {state.routes.map((route, index) => {

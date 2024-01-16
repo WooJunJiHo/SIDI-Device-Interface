@@ -6,7 +6,21 @@ const backgroundColor = StyleSheet.create({
         backgroundColor: '#111'
     },
     lightView: {
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#F0F0F0'
+    },
+
+    darkSubView: {
+        backgroundColor: '#242424'
+    },
+    lightSubView: {
+        backgroundColor: '#FFF'
+    },
+
+    darkMainText: {
+        color: '#FFF',
+    },
+    lightMainText: {
+        color: '#111'
     },
 })
 
