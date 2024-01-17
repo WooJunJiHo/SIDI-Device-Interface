@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AssetsMoreColor from './screens/AssetsMoreColor';
 import Main from './screens/Main';
 import TotalAsset from './screens/TotalAsset';
+import Search from './screens/Search';
 
 
 //탭바 스타일
@@ -23,19 +24,9 @@ const Stack = createStackNavigator();
 
 
 const MainStack = () => (
-    <Stack.Navigator>
-        <Stack.Screen
-            name="Main"
-            component={Main}
-            options={{ headerShown: false }}
-        />
-        <Stack.Screen
-            name="TotalAsset"
-            component={TotalAsset}
-            options={{
-                headerShown: false,
-            }}
-        />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="TotalAsset" component={TotalAsset} />
     </Stack.Navigator>
 );
 
@@ -47,23 +38,16 @@ const MainStack = () => (
 export default function App() {
     return (
         <NavigationContainer>
-            <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-                <Tab.Screen
-                    name='Home'
-                    component={MainStack}
-                    options={{
-                        headerShown: false,
-                        tabBarLabel: () => null,
-                        tabBarIcon: () => (
-                            <Icon
-                                name='home-outline'
-                                size={24}
-                                color='black'
-                            />
-                        ),
-                    }}
-                />
-                <Tab.Screen name='AssetsMoreColor' component={AssetsMoreColor} options={{ headerShown: false }} />
+            <Tab.Navigator
+                screenOptions={{ 
+                    headerShown: false,
+                    tabBarLabel: () => null,
+                }}
+                tabBar={(props) => <TabBar {...props} />}
+            >
+                <Tab.Screen name='Home' component={MainStack} />
+                <Tab.Screen name='Search' component={Search} />
+                <Tab.Screen name='AssetsMoreColor' component={AssetsMoreColor} />
             </Tab.Navigator>
         </NavigationContainer>
     );
