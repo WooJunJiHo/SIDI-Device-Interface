@@ -30,9 +30,20 @@ const backgroundColor = StyleSheet.create({
     //검색창
     darkTextInput: {
         backgroundColor: '#242424',
+        borderColor: '#111',
     },
     lightTextInput: {
         backgroundColor: '#F0F0F0',
+        borderColor: '#FFF'
+    },
+
+
+    //자산 정보 메인 뷰
+    darkPriceView: {
+        backgroundColor: '#111',
+    },
+    lightPriceView: {
+        backgroundColor: '#FFF'
     },
 })
 

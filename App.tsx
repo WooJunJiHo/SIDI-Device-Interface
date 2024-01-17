@@ -9,10 +9,10 @@ import AssetsMoreColor from './screens/AssetsMoreColor';
 import Main from './screens/Main';
 import TotalAsset from './screens/TotalAsset';
 import Search from './screens/Search';
+import AssetsInfo from './screens/Assets-info'
 
 
 //탭바 스타일
-import Icon from './components/styles/Icons';
 import TabBar from './components/styles/TabBar';
 
 
@@ -31,6 +31,13 @@ const MainStack = () => (
 );
 
 
+const SearchStack = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="SearchMain" component={Search} />
+        <Stack.Screen name="SearchAssetsInfo" component={AssetsInfo}/>
+    </Stack.Navigator>
+);
+
 
 
 
@@ -46,7 +53,7 @@ export default function App() {
                 tabBar={(props) => <TabBar {...props} />}
             >
                 <Tab.Screen name='Home' component={MainStack} />
-                <Tab.Screen name='Search' component={Search} />
+                <Tab.Screen name='Search' component={SearchStack} />
                 <Tab.Screen name='AssetsMoreColor' component={AssetsMoreColor} />
             </Tab.Navigator>
         </NavigationContainer>

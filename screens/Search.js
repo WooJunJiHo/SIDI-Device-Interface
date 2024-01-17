@@ -31,7 +31,7 @@ const Search = (props) => {
     return (
         <SafeAreaView
             style={[
-                ui != false ? DarkMode.lightView : DarkMode.darkView,
+                ui != false ? DarkMode.lightPriceView : DarkMode.darkPriceView,
                 {
                     flex: 1,
                 }
@@ -73,7 +73,10 @@ const Search = (props) => {
                     {list.map((item, idx) => (
                         <TouchableOpacity
                             key={idx}
-                            style={[styles.listView, { height: Dimensions.get('window').width / 3 }]}
+                            style={[styles.listView, { height: Dimensions.get('window').width / 3 }, ui != false ? DarkMode.lightTextInput : DarkMode.darkTextInput]}
+                            onPress={() => {
+                                props.navigation.navigate("SearchAssetsInfo")
+                            }}
                         >
 
                         </TouchableOpacity>
@@ -118,8 +121,6 @@ const styles = StyleSheet.create({
     },
     listView: {
         width: '33.3%',
-        backgroundColor: '#242424',
         borderWidth: 1,
-        borderColor: '#111'
     },
 })
