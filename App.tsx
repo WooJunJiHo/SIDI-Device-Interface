@@ -10,6 +10,7 @@ import TotalAsset from './screens/TotalAsset';
 import Search from './screens/Search';
 import AssetsInfo from './screens/Assets-info'
 import Chat from './screens/Chat';
+import Alarm from './screens/Alarm';
 
 
 //탭바 스타일
@@ -46,6 +47,14 @@ const ChatStack = () => (
 );
 
 
+const AlarmStack = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="AlarmMain" component={Alarm} />
+    </Stack.Navigator>
+);
+
+
+
 
 
 
@@ -62,7 +71,8 @@ export default function App() {
             >
                 <Tab.Screen name='Home' component={MainStack} />
                 <Tab.Screen name='Search' component={SearchStack} />
-                <Tab.Screen name='Chat' component={Chat} />
+                <Tab.Screen name='Chat' component={ChatStack} />
+                <Tab.Screen name='Alarm' component={AlarmStack} />
             </Tab.Navigator>
         </NavigationContainer>
     );

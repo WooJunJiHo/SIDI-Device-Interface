@@ -55,7 +55,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         iconName = require('../../assets/icons/search-grayline.png');
                     } else if (route.name === 'Chat') {
                         iconName = require('../../assets/icons/chat-grayline.png');
-                    } else if (route.name === 'Bell') {
+                    } else if (route.name === 'Alarm') {
                         iconName = require('../../assets/icons/bell-grayline.png');
                     } else if (route.name === 'Man') {
                         iconName = require('../../assets/icons/man-grayline.png');
