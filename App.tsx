@@ -5,11 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 // 화면 컴포넌트들 (예시로 2개 추가)
-import AssetsMoreColor from './screens/AssetsMoreColor';
 import Main from './screens/Main';
 import TotalAsset from './screens/TotalAsset';
 import Search from './screens/Search';
 import AssetsInfo from './screens/Assets-info'
+import Chat from './screens/Chat';
 
 
 //탭바 스타일
@@ -39,6 +39,14 @@ const SearchStack = () => (
 );
 
 
+const ChatStack = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="ChatMain" component={Chat} />
+    </Stack.Navigator>
+);
+
+
+
 
 
 
@@ -54,7 +62,7 @@ export default function App() {
             >
                 <Tab.Screen name='Home' component={MainStack} />
                 <Tab.Screen name='Search' component={SearchStack} />
-                <Tab.Screen name='AssetsMoreColor' component={AssetsMoreColor} />
+                <Tab.Screen name='Chat' component={Chat} />
             </Tab.Navigator>
         </NavigationContainer>
     );
