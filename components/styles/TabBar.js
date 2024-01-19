@@ -3,14 +3,20 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native'
+import { useState } from 'react';
+
+//다크 모드
 import DarkMode from '../../components/styles/DarkMode'
 
 
 const TabBar = ({ state, descriptors, navigation }) => {
+    const [ui, setUI] = useState(false)
+
+
     return (
         <View
             style={[
-                DarkMode.darkView,
+                ui != false ? DarkMode.lightView : DarkMode.darkView,
                 {
                     height: 80,
                 }
@@ -21,7 +27,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                     flexDirection: 'row',
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#242424', // 원하는 색상으로 변경
+                    backgroundColor: ui != false ? '#FFFFFF' : '#242424', // 원하는 색상으로 변경
                     borderTopLeftRadius: 10,
                     borderTopRightRadius: 10,
                     borderWidth: 1,
@@ -57,7 +63,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         iconName = require('../../assets/icons/chat-grayline.png');
                     } else if (route.name === 'Alarm') {
                         iconName = require('../../assets/icons/bell-grayline.png');
-                    } else if (route.name === 'Man') {
+                    } else if (route.name === 'MyPage') {
                         iconName = require('../../assets/icons/man-grayline.png');
                     } 
 

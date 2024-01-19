@@ -11,6 +11,7 @@ import Search from './screens/Search';
 import AssetsInfo from './screens/Assets-info'
 import ChatList from './screens/Chat-List';
 import Alarm from './screens/Alarm';
+import MyPage from './screens/MyPage';
 
 
 //탭바 스타일
@@ -54,6 +55,14 @@ const AlarmStack = () => (
 );
 
 
+const MyPageStack = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='MyPageMain' component={MyPage}/>
+        <Stack.Screen name="MyAssetsInfo" component={AssetsInfo}/>
+    </Stack.Navigator>
+)
+
+
 
 
 
@@ -73,6 +82,7 @@ export default function App() {
                 <Tab.Screen name='Search' component={SearchStack} />
                 <Tab.Screen name='Chat' component={ChatStack} />
                 <Tab.Screen name='Alarm' component={AlarmStack} />
+                <Tab.Screen name='MyPage' component={MyPageStack}/>
             </Tab.Navigator>
         </NavigationContainer>
     );
