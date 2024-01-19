@@ -9,7 +9,7 @@ import Main from './screens/Main';
 import TotalAsset from './screens/TotalAsset';
 import Search from './screens/Search';
 import AssetsInfo from './screens/Assets-info'
-import Chat from './screens/Chat';
+import ChatList from './screens/Chat-List';
 import Alarm from './screens/Alarm';
 
 
@@ -42,7 +42,7 @@ const SearchStack = () => (
 
 const ChatStack = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="ChatMain" component={Chat} />
+        <Stack.Screen name="ChatMain" component={ChatList} />
     </Stack.Navigator>
 );
 
