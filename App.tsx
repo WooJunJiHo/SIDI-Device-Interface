@@ -12,6 +12,8 @@ import AssetsInfo from './screens/Assets-info'
 import ChatList from './screens/Chat-List';
 import Alarm from './screens/Alarm';
 import MyPage from './screens/MyPage';
+import Login from './screens/Login';
+
 
 
 //탭바 스타일
@@ -59,6 +61,7 @@ const MyPageStack = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='MyPageMain' component={MyPage}/>
         <Stack.Screen name="MyAssetsInfo" component={AssetsInfo}/>
+        <Stack.Screen name="Login" component={Login}/>
     </Stack.Navigator>
 )
 
