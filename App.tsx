@@ -13,6 +13,7 @@ import ChatList from './screens/Chat-List';
 import Alarm from './screens/Alarm';
 import MyPage from './screens/MyPage';
 import Login from './screens/Login';
+import Setting from './screens/Setting';
 
 
 
@@ -62,6 +63,7 @@ const MyPageStack = () => (
         <Stack.Screen name='MyPageMain' component={MyPage}/>
         <Stack.Screen name="MyAssetsInfo" component={AssetsInfo}/>
         <Stack.Screen name="Login" component={Login}/>
+        <Stack.Screen name='Setting' component={Setting}/>
     </Stack.Navigator>
 )
 

@@ -55,6 +55,7 @@ const MyPage = (props) => {
                 </Text> 
                 <TouchableOpacity
                     style={styles.iconBtn}
+                    onPress={()=>{props.navigation.navigate('Setting')}}
                 >
                     <Icon
                         name='settings-outline'
