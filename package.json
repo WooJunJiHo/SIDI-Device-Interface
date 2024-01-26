@@ -10,10 +10,15 @@
     "test": "jest"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@react-native-firebase/app": "^18.8.0",
     "@react-native-firebase/auth": "^18.8.0",
     "@react-native-firebase/firestore": "^18.8.0",
     "@react-native-firebase/storage": "^18.8.0",
+=======
+    "@react-native-async-storage/async-storage": "^1.21.0",
+    "@react-native-seoul/naver-login": "^3.0.0",
+>>>>>>> 70a4c6cfd2599ac19d5d45897b65ecf1a4de8a10
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.20",

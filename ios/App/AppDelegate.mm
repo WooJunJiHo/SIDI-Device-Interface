@@ -3,6 +3,7 @@
 #import <React/RCTBundleURLProvider.h>
 
 #import <Firebase.h>
+#import <NaverThirdPartyLogin/NaverThirdPartyLoginConnection.h>
 
 @implementation AppDelegate
 
@@ -19,6 +20,14 @@
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
   return YES;
   
+}
+
+// 다른 URL 핸들링 로직이 같이 있는 경우
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  // naver
+  return [[NaverThirdPartyLoginConnection getSharedInstance] application:application openURL:url options:options];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
