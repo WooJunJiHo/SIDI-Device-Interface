@@ -54,6 +54,16 @@ const MyPage = (props) => {
                     내 자산
                 </Text> 
                 <TouchableOpacity
+                    style={[styles.iconBtn, {right: 40,}]}
+                    onPress={()=>{props.navigation.navigate('AssetsAdd')}}
+                >
+                    <Icon
+                        name='add-outline'
+                        size={24}
+                        color={ui != false ? 'black' : 'white'}
+                    />     
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={styles.iconBtn}
                     onPress={()=>{props.navigation.navigate('Setting')}}
                 >
@@ -151,15 +161,6 @@ const MyPage = (props) => {
             {/* 자산 리스트 세션 */}
             <ScrollView>
                 <View style={styles.listSection}>
-                    <TouchableOpacity
-                        style={[
-                            styles.listView, 
-                            { height: Dimensions.get('window').width / 3 }, 
-                            ui != false ? DarkMode.lightTextInput : DarkMode.darkTextInput
-                        ]}
-                    >
-                        <Text style={{fontSize: 60, color: '#767676'}}>+</Text>
-                    </TouchableOpacity>
                     {list.map((item, idx) => (
                         <TouchableOpacity
                             key={idx}

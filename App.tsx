@@ -14,6 +14,7 @@ import Alarm from './screens/Alarm';
 import MyPage from './screens/MyPage';
 import Login from './screens/Login';
 import Setting from './screens/Setting';
+import AssetsAdd from './screens/Assets-Add';
 
 
 
@@ -64,6 +65,7 @@ const MyPageStack = () => (
         <Stack.Screen name="MyAssetsInfo" component={AssetsInfo}/>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name='Setting' component={Setting}/>
+        <Stack.Screen name='AssetsAdd' component={AssetsAdd}/>
     </Stack.Navigator>
 )
 
