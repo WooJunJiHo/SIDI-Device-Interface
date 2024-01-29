@@ -20,6 +20,7 @@ import AssetsAdd from './screens/Assets-Add';
 
 //탭바 스타일
 import TabBar from './components/styles/TabBar';
+import BarGraph from './components/BarGraph/BarGraph';
 
 
 
