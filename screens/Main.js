@@ -6,12 +6,16 @@ import {
     ScrollView,
     StyleSheet,
     Image,
+    Dimensions,
 } from 'react-native'
 import { useState } from 'react'
+import LinearGradient from 'react-native-linear-gradient'
 
 //다크 모드
 import DarkMode from '../components/styles/DarkMode'
 
+import LineGraph from '../components/LineGraph/LineGraph'
+import BarGraph from '../components/BarGraph/BarGraph'
 
 const Home = (props) => {
     // 다크 모드
@@ -93,7 +97,13 @@ const Home = (props) => {
                         ]}
                     >
                         <View style={styles.assetsContainer}>
-                            <View style={styles.totalImage}></View>
+                            <LinearGradient
+                                colors={['#538dfe', '#6c60f1']}
+                                style={styles.totalImage}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 1 }}
+                            >
+                            </LinearGradient>
                             <Image
                                 source={require('../assets/icons/Hand-Icon.png')}
                                 style={styles.totalAssetsImage}
@@ -126,6 +136,9 @@ const Home = (props) => {
                         ]}
                     >
 
+                        <LineGraph />
+
+
                     </View>
 
                     {/* 자산 비율 세션 */}
@@ -135,7 +148,7 @@ const Home = (props) => {
                             styles.section, { height: 309 }
                         ]}
                     >
-
+                        <BarGraph />
                     </View>
                 </View>
             </ScrollView>
@@ -172,13 +185,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#DBDBDB',
         marginRight: 8,
+        // backgroundColor: 'red',
+
     },
 
     shortCut: { //바로가기 버튼
         flexDirection: 'row',
+        alignItems: 'center',
+        // backgroundColor: 'pink'
     },
     shortcutIcon: { // 바로가기 아이콘
-        marginTop: 1,
+        // backgroundColor: 'blue',
     },
 
 
@@ -210,7 +227,6 @@ const styles = StyleSheet.create({
 
     //총 자산 세션
     totalImage: {
-        backgroundColor: '#2A8FF7',
         borderRadius: 100,
         width: 50,
         height: 50,
@@ -237,7 +253,7 @@ const styles = StyleSheet.create({
     assetsContainer: {
         flexDirection: 'row'
     },
-    
+
     totalShortcutIcon: {   // 총 자산 바로가기 아이콘 스타일
         marginTop: 1,
         position: 'absolute',
