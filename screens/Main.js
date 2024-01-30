@@ -145,7 +145,7 @@ const Home = (props) => {
                     <View
                         style={[
                             ui != false ? DarkMode.lightSubView : DarkMode.darkSubView,
-                            styles.section, { height: 309 }
+                            styles.section, { height: 310 }
                         ]}
                     >
                         <BarGraph />
