@@ -59,10 +59,10 @@ const LineGraph = () => {
   });
 
   const graphAndOthersTransform = [{ translateY: translateY }]
-
+  const isScrollEnabled = false;
 
   return (
-    <ScrollView>
+    <ScrollView scrollEnabled={isScrollEnabled}>
       <Header />
 
       <View>

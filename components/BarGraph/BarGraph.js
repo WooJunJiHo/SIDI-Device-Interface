@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { BarChart, LineChart } from 'react-native-gifted-charts';
+import { BarChart } from 'react-native-gifted-charts';
 
 const BarGraph = () => {
   const barData = [
@@ -41,6 +41,7 @@ const BarGraph = () => {
       labelTextStyle: { color: '#DBDBDB' },
     },
   ];
+
 
   const renderTitle = () => {
     return (

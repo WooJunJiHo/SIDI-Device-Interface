@@ -8,8 +8,6 @@ import { PADDING } from "../Model";
 
 import type { GraphState } from "./Selection";
 
-import { View, StyleSheet, TouchableWithoutFeedback, Image } from "react-native";
-
 const Pretendard = require("../../../assets/fonts/PretendardVariable.ttf");
 const format = (value: number) => {
   "worklet";
@@ -50,11 +48,19 @@ export const Label = ({ state, y, graphs, width, height }: LabelProps) => {
     if (!titleFont) {
       return 0;
     }
+  
     const graph = graphs[state.value.current];
-    const title = format(graph.data.maxPrice);
+    const title = '원'; // "원" 텍스트는 항상 고정된 x 좌표에 있습니다.
     const titleWidth = titleFont.getTextWidth(title);
-    return width / 1.35 - titleWidth / 2;
+  
+    // 숫자 부분의 텍스트 폭 계산
+    const numericPart = format(graph.data.maxPrice);
+    const numericPartWidth = titleFont.getTextWidth(numericPart);
+  
+    // "원" 텍스트의 x 좌표를 고정하고 숫자 부분에 맞게 조절합니다.
+    return width / 1.2 - numericPartWidth; // 또는 다른 조절 방식에 따라 적절히 조정하십시오.
   }, [state, titleFont]);
+
 
   return (
     <>
@@ -68,4 +74,3 @@ export const Label = ({ state, y, graphs, width, height }: LabelProps) => {
     </>
   );
 };
-
