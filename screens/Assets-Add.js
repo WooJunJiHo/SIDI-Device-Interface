@@ -5,10 +5,9 @@ import {
     TouchableOpacity,
     ScrollView,
     StyleSheet,
+    Alert,
 } from 'react-native'
 import { useState, useEffect } from 'react';
-import axios from 'axios'
-import { REACT_APP_SERVER_URL } from '@env'
 
 
 //선택창
@@ -17,8 +16,11 @@ import { Picker } from 'react-native-wheel-pick';
 //다크 모드
 import DarkMode from '../components/styles/DarkMode'
 
-//아이콤
+//아이콘
 import Icon from '../components/styles/Icons';
+
+//데이터 패치
+import { getColors, getInfos } from '../components/Fetch/FetchData';
 
 
 
@@ -29,7 +31,7 @@ const AssetsAdd = (props) => {
     const [ui, setUI] = useState(false);
 
     //분석한 자산
-    const [asset, setAsset] = useState('Samsung Z Flip 3-4')
+    const [asset, setAsset] = useState('Apple iPhone Pro')
     const [assetColor, setAssetColor] = useState()
     const [assetInfo, setAssetInfo] = useState()
 
@@ -43,23 +45,16 @@ const AssetsAdd = (props) => {
 
 
     useEffect(() => {
-        // /getColor에 GET 요청 보내기
-        axios.get(`${REACT_APP_SERVER_URL}/getColor`)
-            .then(response => { 
-                setAssetColor(response.data)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-
-        // /getInfo에 GET 요청 보내기
-        axios.get(`${REACT_APP_SERVER_URL}/getInfo`)
-            .then(response => {
-                setAssetInfo(response.data)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        const fetchInfos = async () => {
+            const infoTemp = await getInfos()
+            setAssetInfo(infoTemp)
+        }
+        const fetchColors = async () => {
+            const colorTemp = await getColors()
+            setAssetColor(colorTemp)
+        }
+        fetchInfos()
+        fetchColors()
     }, [])
 
 
@@ -176,7 +171,7 @@ const AssetsAdd = (props) => {
                     onPress={() => {
                         const filteredArray = assetColor.filter(item => item.AssetsMoreInfoID == model)
                         setFilters(filteredArray)
-                        setPickerColorStat(true)
+                        model === null ? console.log('모델 먼저 선택해주세요') : setPickerColorStat(true)
                     }}
                 >
                     <Text style={styles.infoText}>색상 선택</Text>
@@ -219,93 +214,99 @@ const AssetsAdd = (props) => {
 
             {/* 선택창 세션 */}
             {pickerStat ?
-                <View
-                    style={[
-                        ui != false ? { backgroundColor: '#FFF' } : { backgroundColor: '#242424' },
-                        styles.pickerSection
-                    ]}
-                >
-                    <Text
+                <View style={styles.pickerBackground}>
+                    <View style={styles.pickerOpacity}></View>
+                    <View
                         style={[
-                            ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
-                            styles.pickerTitle
+                            ui != false ? { backgroundColor: '#FFF' } : { backgroundColor: '#242424' },
+                            styles.pickerSection
                         ]}
                     >
-                        모델 선택
-                    </Text>
-                    <TouchableOpacity
-                        style={{ position: 'absolute', right: 20, top: 20, }}
-                        onPress={() => {
-                            setPickerStat(false)
-                            setFilters(null)
-                        }}
-                    >
-                        <Icon
-                            name='arrow-redo'
-                            size={24}
-                            color='lightskyblue'
+                        <Text
+                            style={[
+                                ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
+                                styles.pickerTitle
+                            ]}
+                        >
+                            모델 선택
+                        </Text>
+                        <TouchableOpacity
+                            style={{ position: 'absolute', right: 20, top: 20, }}
+                            onPress={() => {
+                                setPickerStat(false)
+                                setFilters(null)
+                            }}
+                        >
+                            <Icon
+                                name='arrow-redo'
+                                size={24}
+                                color='lightskyblue'
+                            />
+                        </TouchableOpacity>
+                        <Picker style={styles.pickerView}
+                            textColor={ui != false ? 'black' : 'white'}
+                            pickerData={filters}
+                            onValueChange={value => { setModel(value) }}
                         />
-                    </TouchableOpacity>
-                    <Picker style={styles.pickerView}
-                        textColor={ui != false ? 'black' : 'white'}
-                        pickerData={filters}
-                        onValueChange={value => { setModel(value) }}
-                    />
+                    </View>
                 </View> : null
             }
             {pickerColorStat ?
-                <View
-                    style={[
-                        ui != false ? { backgroundColor: '#FFF' } : { backgroundColor: '#242424' },
-                        styles.pickerSection,
-                        { height: 400 },
-                    ]}
-                >
-                    <Text
+                <View style={styles.pickerBackground}>
+                    <View style={styles.pickerOpacity}></View>
+                    <View
                         style={[
-                            ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
-                            styles.pickerTitle
+                            ui != false ? { backgroundColor: '#FFF' } : { backgroundColor: '#242424' },
+                            styles.pickerSection,
+                            { height: 400 },
                         ]}
                     >
-                        색상 선택
-                    </Text>
-                    <ScrollView>
-                        <View
-                            style={{
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                flexDirection: 'row',
-                                flexWrap: 'wrap'
-                            }}
+                        <Text
+                            style={[
+                                ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
+                                styles.pickerTitle
+                            ]}
                         >
-                            {filters.map((item, idx) => (
-                                <TouchableOpacity
-                                    key={idx}
-                                    style={styles.colorView}
-                                    onPress={() => {
-                                        setColor(item.COLOR)
-                                        setPickerColorStat(false)
-                                    }}
-                                >
-                                    <View
-                                        style={[
-                                            styles.rgbView,
-                                            { backgroundColor: item.RGB }
-                                        ]}>
-
-                                    </View>
-                                    <Text
-                                        style={[
-                                            styles.colorText,
-                                            ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
-                                        ]}
+                            색상 선택
+                        </Text>
+                        <ScrollView>
+                            <View
+                                style={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexDirection: 'row',
+                                    flexWrap: 'wrap'
+                                }}
+                            >
+                                {filters.map((item, idx) => (
+                                    <TouchableOpacity
+                                        key={idx}
+                                        style={styles.colorView}
+                                        onPress={() => {
+                                            setColor(item.COLOR)
+                                            setPickerColorStat(false)
+                                        }}
                                     >
-                                        {item.COLOR}
-                                    </Text>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </ScrollView>
+                                        <View
+                                            style={[
+                                                styles.rgbView,
+                                                { backgroundColor: item.RGB }
+                                            ]}>
+
+                                        </View>
+                                        <Text
+                                            style={[
+                                                styles.colorText,
+                                                ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
+                                            ]}
+                                        >
+                                            {item.COLOR}
+                                        </Text>
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
+                        </ScrollView>
+                    </View>
                 </View> : null
             }
 
@@ -382,6 +383,19 @@ const styles = StyleSheet.create({
 
 
     //선택창
+    pickerBackground: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        bottom: 0,
+        alignItems: 'center',
+    },
+    pickerOpacity: {
+        flex: 1, 
+        opacity: 0.8, 
+        backgroundColor: '#111',
+        width: '100%',
+    },
     pickerSection: {
         width: '98%',
         height: 280,
