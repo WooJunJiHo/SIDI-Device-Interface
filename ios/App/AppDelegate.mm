@@ -4,6 +4,8 @@
 
 #import <NaverThirdPartyLogin/NaverThirdPartyLoginConnection.h>
 
+#import <RNKakaoLogins.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,12 +18,28 @@
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
-// 다른 URL 핸들링 로직이 같이 있는 경우
+
+
+
+
+
+// URL 핸들링 로직
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+
   // naver
-  return [[NaverThirdPartyLoginConnection getSharedInstance] application:application openURL:url options:options];
+  if ([url.scheme isEqualToString:@"{{ CUSTOM URL SCHEME }}"]) {
+    return [[NaverThirdPartyLoginConnection getSharedInstance] application:application openURL:url options:options];
+  }
+  
+  // kakao
+  if([RNKakaoLogins isKakaoTalkLoginUrl:url]) {
+    return [RNKakaoLogins handleOpenUrl: url];
+  }
+
+  return NO;
+
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
