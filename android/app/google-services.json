@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1091752426451",
+    "project_id": "soda-73805",
+    "storage_bucket": "soda-73805.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091752426451:android:a1a021bce23835f1298d26",
+        "android_client_info": {
+          "package_name": "com.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091752426451-lfpi3t70mtaqauqjirtdkc4f4oucolof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK7gBuOpRO1EOpsP6v2TuAwxuHLAw81cM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091752426451-lfpi3t70mtaqauqjirtdkc4f4oucolof.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1091752426451-tg06miugq9d3hdh5cfjjv1lfotvl5jiv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.App"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -52,7 +52,7 @@ const MyPage = (props) => {
                     ]}
                 >
                     내 자산
-                </Text> 
+                </Text>
                 <TouchableOpacity
                     style={[styles.iconBtn, {right: 40,}]}
                     onPress={()=>{props.navigation.navigate('AssetsAdd')}}
@@ -64,7 +64,17 @@ const MyPage = (props) => {
                     />     
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.iconBtn}
+                    style={styles.userBtn}
+                    onPress={()=>{props.navigation.navigate('Login')}}
+                >
+                    <Icon
+                        name='person-outline'
+                        size={24}
+                        color={ui != false ? 'black' : 'white'} 
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.settingBtn}
                     onPress={()=>{props.navigation.navigate('Setting')}}
                 >
                     <Icon
@@ -199,7 +209,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    iconBtn: {
+    userBtn: {
+        position: 'absolute',
+        right: 30,
+        top: 30,
+    },
+    settingBtn: {
         position: 'absolute',
         right: 0,
         top: 30,

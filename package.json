@@ -17,6 +17,8 @@
     "@react-native-firebase/firestore": "^18.8.0",
     "@react-native-firebase/storage": "^18.8.0",
     "@react-native-picker/picker": "^2.6.1",
+    "@react-native-google-signin/google-signin": "^11.0.0",
+    "@react-native-seoul/kakao-login": "^5.3.1",
     "@react-native-seoul/naver-login": "^3.0.0",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
