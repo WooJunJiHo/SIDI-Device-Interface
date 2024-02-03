@@ -2,6 +2,7 @@ import {
     SafeAreaView,
     Text,
     View,
+    Image,
     TouchableOpacity,
     ScrollView,
     StyleSheet,
@@ -21,6 +22,10 @@ import Icon from '../components/styles/Icons';
 
 //데이터 패치
 import { getColors, getInfos } from '../components/Fetch/FetchData';
+
+//갤러리, 카메라
+import { onSelectImage } from '../components/utils/Gallery'
+import CameraComponent from '../components/utils/Camera';
 
 
 
@@ -42,6 +47,11 @@ const AssetsAdd = (props) => {
     const [model, setModel] = useState(null)
     const [color, setColor] = useState(null)
 
+    //자산 이미지
+    const [assetImages, setAssetImages] = useState([])
+
+    //카메라 선택
+    const [onCamera, setOnCamera] = useState(false)
 
 
     useEffect(() => {
@@ -55,10 +65,50 @@ const AssetsAdd = (props) => {
         }
         fetchInfos()
         fetchColors()
+
     }, [])
 
 
 
+    //자산 추가 방법 선택
+    const selectAssetsAlert = () => {
+        Alert.alert(                    // 말그대로 Alert를 띄운다
+            "선택해주세요",                    // 첫번째 text: 타이틀 제목
+            "Select Plz",                         // 두번째 text: 그 밑에 작은 제목
+            [                              // 버튼 배열
+                {
+                    text: "갤러리",                              // 버튼 제목
+                    onPress: () => {
+                        const selectAssetsAlert = () => {
+                            onSelectImage()
+                                .then((imageTemp) => {
+                                    setAssetImages([...assetImages, { uri: imageTemp }]);
+                                })
+                                .catch((error) => {
+                                    console.log('Error selecting image:', error);
+                                });
+                        };
+                        selectAssetsAlert()
+                    },     //onPress 이벤트시 콘솔창에 로그를 찍는다
+                },
+                {
+                    text: "카메라",
+                    onPress: () => setOnCamera(true)
+                }, //버튼 제목
+                // 이벤트 발생시 로그를 찍는다
+            ],
+            { cancelable: false }
+        );
+    }
+
+    //카메라 결과 return
+    const imageCapture = (imageUri) => {
+        setAssetImages([...assetImages, { uri: imageUri }]);
+        setOnCamera(false)
+    };
+
+
+    if (onCamera === true) { return <CameraComponent onImageCallBack={imageCapture}/> }
     return (
         <SafeAreaView
             style={[
@@ -69,6 +119,7 @@ const AssetsAdd = (props) => {
                 }
             ]}
         >
+
             {/* 타이틀 뷰 */}
             <View style={styles.titleSection}>
                 <Text
@@ -104,9 +155,27 @@ const AssetsAdd = (props) => {
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                 >
-                    <View style={styles.image}>
-
-                    </View>
+                    <TouchableOpacity
+                        style={styles.image}
+                        onPress={() => {
+                            selectAssetsAlert()
+                        }}
+                    >
+                        <Icon name='camera-outline' size={24} color='white' />
+                    </TouchableOpacity>
+                    {assetImages ? assetImages.map((item, idx) => (
+                        <TouchableOpacity
+                            key={idx}
+                            onPress={() => {
+                                // 이미지 선택 시 삭제
+                                const updatedImages = [...assetImages];
+                                updatedImages.splice(idx, 1);
+                                setAssetImages(updatedImages);
+                            }}
+                        >
+                            <Image style={styles.image} source={{ uri: item.uri }} />
+                        </TouchableOpacity>
+                    )) : null}
                 </ScrollView>
             </View>
 
@@ -245,6 +314,7 @@ const AssetsAdd = (props) => {
                         </TouchableOpacity>
                         <Picker style={styles.pickerView}
                             textColor={ui != false ? 'black' : 'white'}
+                            textSize={18}
                             pickerData={filters}
                             onValueChange={value => { setModel(value) }}
                         />
@@ -352,7 +422,10 @@ const styles = StyleSheet.create({
     image: {
         width: 90,
         height: 90,
-        backgroundColor: '#767676'
+        backgroundColor: '#767676',
+        marginRight: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
 
@@ -391,8 +464,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     pickerOpacity: {
-        flex: 1, 
-        opacity: 0.8, 
+        flex: 1,
+        opacity: 0.8,
         backgroundColor: '#111',
         width: '100%',
     },

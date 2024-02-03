@@ -83,6 +83,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                             <TouchableOpacity
                                 key={index}
                                 onPress={onPress}
+                                style={{bottom: 10,}}
                             >
                                 <Image
                                     source={iconName}
