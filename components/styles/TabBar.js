@@ -10,7 +10,11 @@ import DarkMode from '../../components/styles/DarkMode'
 
 
 const TabBar = ({ state, descriptors, navigation }) => {
+    //다크모드
     const [ui, setUI] = useState(false)
+
+    //클릭 이벤트
+    const [onScreen, setOnScreen] = useState('Home')
 
 
     return (
@@ -48,6 +52,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         });
 
                         if (!isFocused && !event.defaultPrevented) {
+                            setOnScreen(route.name)
                             navigation.navigate(route.name);
                         }
                     };
@@ -56,15 +61,25 @@ const TabBar = ({ state, descriptors, navigation }) => {
                     // 아이콘 이름을 동적으로 가져오는 대신 직접 지정
                     let iconName;
                     if (route.name === 'Home') {
-                        iconName = require('../../assets/icons/home-grayline.png');
+                        onScreen == route.name ?  
+                        iconName = require('../../assets/icons/blue-home_icon.png') :
+                        iconName = require('../../assets/icons/home-grayline.png')
                     } else if (route.name === 'Search') {
-                        iconName = require('../../assets/icons/search-grayline.png');
+                        onScreen == route.name ? 
+                        iconName = require('../../assets/icons/blue-search_icon.png') :
+                        iconName = require('../../assets/icons/search-grayline.png')
                     } else if (route.name === 'Chat') {
-                        iconName = require('../../assets/icons/chat-grayline.png');
+                        onScreen == route.name ? 
+                        iconName = require('../../assets/icons/blue-chat_icon.png') :
+                        iconName = require('../../assets/icons/chat-grayline.png')
                     } else if (route.name === 'Alarm') {
-                        iconName = require('../../assets/icons/bell-grayline.png');
+                        onScreen == route.name ? 
+                        iconName = require('../../assets/icons/blue-bell_icon.png') :
+                        iconName = require('../../assets/icons/bell-grayline.png')
                     } else if (route.name === 'MyPage') {
-                        iconName = require('../../assets/icons/man-grayline.png');
+                        onScreen == route.name ? 
+                        iconName = require('../../assets/icons/blue-man_icon.png') :
+                        iconName = require('../../assets/icons/man-grayline.png')
                     } 
 
 

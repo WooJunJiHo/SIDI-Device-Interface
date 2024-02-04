@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 
 
 //선택창
-import { Picker } from 'react-native-wheel-pick';
+import { SelectModel, SelectColor } from '../components/utils/Pickers'
 
 //다크 모드
 import DarkMode from '../components/styles/DarkMode'
@@ -69,7 +69,6 @@ const AssetsAdd = (props) => {
     }, [])
 
 
-
     //자산 추가 방법 선택
     const selectAssetsAlert = () => {
         Alert.alert(                    // 말그대로 Alert를 띄운다
@@ -79,7 +78,7 @@ const AssetsAdd = (props) => {
                 {
                     text: "갤러리",                              // 버튼 제목
                     onPress: () => {
-                        const selectAssetsAlert = () => {
+                        const selectGallery = () => {
                             onSelectImage()
                                 .then((imageTemp) => {
                                     setAssetImages([...assetImages, { uri: imageTemp }]);
@@ -88,7 +87,7 @@ const AssetsAdd = (props) => {
                                     console.log('Error selecting image:', error);
                                 });
                         };
-                        selectAssetsAlert()
+                        selectGallery()
                     },     //onPress 이벤트시 콘솔창에 로그를 찍는다
                 },
                 {
@@ -108,7 +107,22 @@ const AssetsAdd = (props) => {
     };
 
 
-    if (onCamera === true) { return <CameraComponent onImageCallBack={imageCapture}/> }
+    //선택창 결과 return
+    const onSelectModel = (item) => {
+        setModel(item)
+        setPickerStat(false)
+        setFilters(null)
+    }
+
+    const onSelectColor = (item) => {
+        setColor(item)
+        setPickerColorStat(false)
+    }
+
+
+
+
+    if (onCamera === true) { return <CameraComponent onImageCallBack={imageCapture} /> }
     return (
         <SafeAreaView
             style={[
@@ -207,7 +221,13 @@ const AssetsAdd = (props) => {
                         const transformedData = filteredArray.map(item => ({
                             value: item.AssetsMoreInfoID,
                             label: item.COMPANY + ' ' + item.MODEL + ' ' + item.MORE,
+                            AssetsMoreInfoID: item.AssetsMoreInfoID, 
+                            COMPANY: item.COMPANY, 
+                            MODEL: item.MODEL, 
+                            MORE: item.MORE, 
+                            RESULT: item.RESULT,
                         }));
+                        setColor(null)
                         setFilters(transformedData)
                         setPickerStat(true)
                     }}
@@ -228,7 +248,7 @@ const AssetsAdd = (props) => {
                                 ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
                             ]}
                         >
-                            {model}
+                            {!model[0] ? setModel(null) : model[0].label}
                         </Text>
                     }
                 </TouchableOpacity>
@@ -238,7 +258,7 @@ const AssetsAdd = (props) => {
                         ui != false ? DarkMode.lightTextInput : DarkMode.darkTextInput,
                     ]}
                     onPress={() => {
-                        const filteredArray = assetColor.filter(item => item.AssetsMoreInfoID == model)
+                        const filteredArray = assetColor.filter(item => item.AssetsMoreInfoID == model[0].value)
                         setFilters(filteredArray)
                         model === null ? console.log('모델 먼저 선택해주세요') : setPickerColorStat(true)
                     }}
@@ -283,101 +303,18 @@ const AssetsAdd = (props) => {
 
             {/* 선택창 세션 */}
             {pickerStat ?
-                <View style={styles.pickerBackground}>
-                    <View style={styles.pickerOpacity}></View>
-                    <View
-                        style={[
-                            ui != false ? { backgroundColor: '#FFF' } : { backgroundColor: '#242424' },
-                            styles.pickerSection
-                        ]}
-                    >
-                        <Text
-                            style={[
-                                ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
-                                styles.pickerTitle
-                            ]}
-                        >
-                            모델 선택
-                        </Text>
-                        <TouchableOpacity
-                            style={{ position: 'absolute', right: 20, top: 20, }}
-                            onPress={() => {
-                                setPickerStat(false)
-                                setFilters(null)
-                            }}
-                        >
-                            <Icon
-                                name='arrow-redo'
-                                size={24}
-                                color='lightskyblue'
-                            />
-                        </TouchableOpacity>
-                        <Picker style={styles.pickerView}
-                            textColor={ui != false ? 'black' : 'white'}
-                            textSize={18}
-                            pickerData={filters}
-                            onValueChange={value => { setModel(value) }}
-                        />
-                    </View>
-                </View> : null
+                <SelectModel
+                    items={filters}
+                    ui={ui}
+                    onSelectModel={onSelectModel}
+                /> : null
             }
             {pickerColorStat ?
-                <View style={styles.pickerBackground}>
-                    <View style={styles.pickerOpacity}></View>
-                    <View
-                        style={[
-                            ui != false ? { backgroundColor: '#FFF' } : { backgroundColor: '#242424' },
-                            styles.pickerSection,
-                            { height: 400 },
-                        ]}
-                    >
-                        <Text
-                            style={[
-                                ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
-                                styles.pickerTitle
-                            ]}
-                        >
-                            색상 선택
-                        </Text>
-                        <ScrollView>
-                            <View
-                                style={{
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    flexDirection: 'row',
-                                    flexWrap: 'wrap'
-                                }}
-                            >
-                                {filters.map((item, idx) => (
-                                    <TouchableOpacity
-                                        key={idx}
-                                        style={styles.colorView}
-                                        onPress={() => {
-                                            setColor(item.COLOR)
-                                            setPickerColorStat(false)
-                                        }}
-                                    >
-                                        <View
-                                            style={[
-                                                styles.rgbView,
-                                                { backgroundColor: item.RGB }
-                                            ]}>
-
-                                        </View>
-                                        <Text
-                                            style={[
-                                                styles.colorText,
-                                                ui != false ? DarkMode.lightMainText : DarkMode.darkMainText,
-                                            ]}
-                                        >
-                                            {item.COLOR}
-                                        </Text>
-                                    </TouchableOpacity>
-                                ))}
-                            </View>
-                        </ScrollView>
-                    </View>
-                </View> : null
+                <SelectColor
+                    items={filters}
+                    ui={ui}
+                    onSelectColor={onSelectColor}
+                /> : null
             }
 
         </SafeAreaView>
@@ -451,64 +388,5 @@ const styles = StyleSheet.create({
         right: 20,
         fontSize: 18,
         fontWeight: 'bold',
-    },
-
-
-
-    //선택창
-    pickerBackground: {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        bottom: 0,
-        alignItems: 'center',
-    },
-    pickerOpacity: {
-        flex: 1,
-        opacity: 0.8,
-        backgroundColor: '#111',
-        width: '100%',
-    },
-    pickerSection: {
-        width: '98%',
-        height: 280,
-        position: 'absolute',
-        bottom: 0,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        borderTopWidth: 1,
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-        borderColor: '#767676',
-    },
-    pickerTitle: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: 20,
-        marginBottom: 20,
-    },
-    pickerView: {
-        backgroundColor: '#00ff0000',
-    },
-    colorView: {
-        width: '40%',
-        height: 90,
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#767676',
-        margin: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    rgbView: {
-        width: 30,
-        height: 30,
-        borderRadius: 100,
-    },
-    colorText: {
-        marginTop: 12,
-        fontSize: 16,
-        fontWeight: 'normal',
     },
 })

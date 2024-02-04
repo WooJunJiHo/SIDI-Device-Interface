@@ -74,6 +74,16 @@ const MyPage = (props) => {
                     />
                 </TouchableOpacity>
                 <TouchableOpacity
+                    style={[styles.userBtn, {right: 60,}]}
+                    onPress={()=>{props.navigation.navigate('AssetsAdd')}}
+                >
+                    <Icon
+                        name='add-outline'
+                        size={24}
+                        color={ui != false ? 'black' : 'white'} 
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={styles.settingBtn}
                     onPress={()=>{props.navigation.navigate('Setting')}}
                 >
