@@ -1,24 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 //아이콘
 import Icon from '../styles/Icons';
 
 
+
 //네이버 로그인
 import NaverLogin, {
-        NaverLoginResponse,
-        GetProfileResponse,
-    } from '@react-native-seoul/naver-login';
+    NaverLoginResponse,
+    GetProfileResponse,
+} from '@react-native-seoul/naver-login';
 
-
-
-
-
-const consumerKey = 'vngb9RsJR_8NiRxQtg3j';
-const consumerSecret = 'ewF3IQNHAi';
-const appName = 'com.App';
-const serviceUrlScheme = 'naverLogin';
 
 
 
@@ -37,15 +30,15 @@ const naverLogin = () => {
 
 
     const login = async () => {
-        const {failureResponse, successResponse} = await NaverLogin.login({
-            appName,
-            consumerKey,
-            consumerSecret,
-            serviceUrlScheme,
+        const { failureResponse, successResponse } = await NaverLogin.login({
+            appName: process.env.REACT_APP_APP_NAME,
+            consumerKey: process.env.REACT_APP_NAVER_CONSUMOR_KEY,
+            consumerSecret: process.env.REACT_APP_NAVER_CONSUMOR_SECRET,
+            serviceUrlScheme: process.env.REACT_APP_SERVICE_URL_SCHEME,
         });
         setSuccessResponse(successResponse);
         setFailureResponse(failureResponse);
-      };
+    };
 
 
 
@@ -54,26 +47,26 @@ const naverLogin = () => {
     return (
 
         <TouchableOpacity
+            style={[
+                styles.loginBtn,
+                { backgroundColor: '#2CC63C', marginTop: 30 }
+            ]}
+            onPress={login}
+        >
+            <Icon
+                name='logo-apple'
+                size={24}
+                color='#FFFFFF'
+            />
+            <Text
                 style={[
-                    styles.loginBtn,
-                    { backgroundColor: '#2CC63C', marginTop: 30 }
+                    styles.btnText,
+                    { color: '#FFFFFF' }
                 ]}
-                onPress={login}
             >
-                <Icon
-                    name='logo-apple'
-                    size={24}
-                    color='#FFFFFF'
-                />
-                <Text
-                    style={[
-                        styles.btnText,
-                        {color: '#FFFFFF'}
-                    ]}
-                >
-                    네이버 로그인
-                </Text>
-            </TouchableOpacity>
+                네이버 로그인
+            </Text>
+        </TouchableOpacity>
 
     )
 

@@ -86,6 +86,9 @@ const Chat = (props) => {
                         <TouchableOpacity
                             key={idx}
                             style={styles.chatView}
+                            onPress={() => {
+                                props.navigation.navigate('ChatRoom')
+                            }}
                         >
                             <View style={styles.chatImage}></View>
                             <Text

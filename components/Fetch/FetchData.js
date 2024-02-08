@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//서버 주소
 import { REACT_APP_SERVER_URL } from '@env'
 
 

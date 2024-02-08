@@ -6,10 +6,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // 화면 컴포넌트들 (예시로 2개 추가)
 import Main from './screens/Main';
-import TotalAsset from './screens/TotalAsset';
 import Search from './screens/Search';
 import AssetsInfo from './screens/Assets-info'
 import ChatList from './screens/Chat-List';
+import ChatRoom from './screens/Chat-Room'
 import Alarm from './screens/Alarm';
 import MyPage from './screens/MyPage';
 import Login from './screens/Login';
@@ -32,7 +32,6 @@ const Stack = createStackNavigator();
 const MainStack = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Main" component={Main} />
-        <Stack.Screen name="TotalAsset" component={TotalAsset} />
     </Stack.Navigator>
 );
 
@@ -48,6 +47,7 @@ const SearchStack = () => (
 const ChatStack = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="ChatMain" component={ChatList} />
+        <Stack.Screen name='ChatRoom' component={ChatRoom} />
     </Stack.Navigator>
 );
 

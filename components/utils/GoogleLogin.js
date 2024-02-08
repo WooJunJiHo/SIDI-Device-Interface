@@ -1,15 +1,11 @@
 import { Text, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
-//다크 모드
-import DarkMode from '../styles/DarkMode'
-
-//아이콘
-import Icon from '../styles/Icons';
-
 //구글로그인
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
+//api키
+import { REACT_APP_GOOGLE_WEB_CLIENT_ID } from '@env'
 
 
 
@@ -21,7 +17,7 @@ const GoogleLogin = () => {
     //구글 로그인 ID
     useEffect(() => {
         GoogleSignin.configure({
-            webClientId: '1091752426451-lfpi3t70mtaqauqjirtdkc4f4oucolof.apps.googleusercontent.com',
+            webClientId: REACT_APP_GOOGLE_WEB_CLIENT_ID,
         });
     }, []);
 
