@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import FirstPage from './screens/FirstPage';
+import StepPage from './screens/StepPage';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,15 @@ export default function App() {
                     component={FirstPage}
                     options={{
                         headerShown: false,
-                    }} />
+                    }}
+                />
+                <Stack.Screen name="StepPage"
+                    component={StepPage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

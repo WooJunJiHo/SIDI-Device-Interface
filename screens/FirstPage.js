@@ -1,10 +1,12 @@
-import { style } from 'd3';
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 
 const FirstPage = () => {
+    const navigation = useNavigation();
+
     return (
         <View>
 
@@ -15,16 +17,16 @@ const FirstPage = () => {
 
 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('StepPage')}>
                     <View style={styles.startContainer}>
                         <Text style={styles.startText}>전자 제품 중고가 확인</Text>
                         <Text style={styles.startSubText}>간편하게 내 핸드폰의 중고 가격을 측정해보세요</Text>
-                        
-                            <Image
-                                source={require('../assets/images/Phone.png')}
-                                style={{width:154, height:200, marginTop: 40, marginLeft: 600}}
-                            />
-                        
+
+                        <Image
+                            source={require('../assets/images/Phone.png')}
+                            style={{ width: 200, height: 300, marginTop: -10, marginLeft: 590 }}
+                        />
+
                     </View>
                 </TouchableOpacity>
 
@@ -32,9 +34,9 @@ const FirstPage = () => {
                     <View style={styles.explanation}>
                         <Text style={styles.startText}>기술 설명</Text>
                         <Image
-                                source={require('../assets/images/Explain.png')}
-                                style={{ width: 400, height: 280, marginTop: 4, marginLeft: 90}}
-                            />
+                            source={require('../assets/images/Explain.png')}
+                            style={{ width: 400, height: 280, marginTop: 4, marginLeft: 90 }}
+                        />
                     </View>
                 </TouchableOpacity>
 
