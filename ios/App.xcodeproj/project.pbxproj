@@ -17,6 +17,16 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CCDFD548F5B3FBF1C5D77F53 /* Pods_App_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484CA72D8675A6EA7D745537 /* Pods_App_AppTests.framework */; };
 		D51FA7792B565B3100D36358 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D51FA7772B565B3100D36358 /* Ionicons.ttf */; };
+		9ADA42A77F8444AFA88BB1A5 /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 55584F7154DF4694A7804A26 /* NotoSansCJKkr-Black.otf */; };
+		AEB82F283BB547EA9FA259C6 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A80A9179354E419694E767BB /* NotoSansCJKkr-Bold.otf */; };
+		B4455242F3E34CDA9CF1EDBF /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 300EAE051C7846DF906F9F5B /* NotoSansCJKkr-DemiLight.otf */; };
+		0C9CB0AF5D9F436093FE18DF /* NotoSansCJKkr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 41DFFF5B492A42338B781FEF /* NotoSansCJKkr-Light.otf */; };
+		5857FFF635114D83BED1697C /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE08BD1EEE4B6F95EC9261 /* NotoSansCJKkr-Medium.otf */; };
+		F7D193BB60F6409DBC168738 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 168CF781DB6A404E89384003 /* NotoSansCJKkr-Regular.otf */; };
+		5A6673DD87A54C81811682B9 /* NotoSansCJKkr-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08448FDA11844C62A0CB025A /* NotoSansCJKkr-Thin.otf */; };
+		8F8274909A8B4B99AB157462 /* NotoSansMonoCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FB3B1BAAE5B2452799D7C2A7 /* NotoSansMonoCJKkr-Bold.otf */; };
+		BF31F640E9F04273901C9E7C /* NotoSansMonoCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF027E6196304BB28572EF7C /* NotoSansMonoCJKkr-Regular.otf */; };
+		B7700BCFD3574047AA622F5C /* PretendardVariable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58E1E354B39D4CD1AEFF25B5 /* PretendardVariable.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +61,16 @@
 		D51FA7772B565B3100D36358 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FDF6E559171EFBDC3488D651 /* Pods-App-AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-AppTests.debug.xcconfig"; path = "Target Support Files/Pods-App-AppTests/Pods-App-AppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		55584F7154DF4694A7804A26 /* NotoSansCJKkr-Black.otf */ = {isa = PBXFileReference; name = "NotoSansCJKkr-Black.otf"; path = "../assets/fonts/NotoSansCJKkr-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A80A9179354E419694E767BB /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; name = "NotoSansCJKkr-Bold.otf"; path = "../assets/fonts/NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		300EAE051C7846DF906F9F5B /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; name = "NotoSansCJKkr-DemiLight.otf"; path = "../assets/fonts/NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		41DFFF5B492A42338B781FEF /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; name = "NotoSansCJKkr-Light.otf"; path = "../assets/fonts/NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7EEE08BD1EEE4B6F95EC9261 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; name = "NotoSansCJKkr-Medium.otf"; path = "../assets/fonts/NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		168CF781DB6A404E89384003 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; name = "NotoSansCJKkr-Regular.otf"; path = "../assets/fonts/NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		08448FDA11844C62A0CB025A /* NotoSansCJKkr-Thin.otf */ = {isa = PBXFileReference; name = "NotoSansCJKkr-Thin.otf"; path = "../assets/fonts/NotoSansCJKkr-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FB3B1BAAE5B2452799D7C2A7 /* NotoSansMonoCJKkr-Bold.otf */ = {isa = PBXFileReference; name = "NotoSansMonoCJKkr-Bold.otf"; path = "../assets/fonts/NotoSansMonoCJKkr-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AF027E6196304BB28572EF7C /* NotoSansMonoCJKkr-Regular.otf */ = {isa = PBXFileReference; name = "NotoSansMonoCJKkr-Regular.otf"; path = "../assets/fonts/NotoSansMonoCJKkr-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		58E1E354B39D4CD1AEFF25B5 /* PretendardVariable.ttf */ = {isa = PBXFileReference; name = "PretendardVariable.ttf"; path = "../assets/fonts/PretendardVariable.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +153,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				3313FD03421B4D4E9BC3B799 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -166,6 +187,24 @@
 			);
 			path = Fonts;
 			sourceTree = "<group>";
+		};
+		3313FD03421B4D4E9BC3B799 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				55584F7154DF4694A7804A26 /* NotoSansCJKkr-Black.otf */,
+				A80A9179354E419694E767BB /* NotoSansCJKkr-Bold.otf */,
+				300EAE051C7846DF906F9F5B /* NotoSansCJKkr-DemiLight.otf */,
+				41DFFF5B492A42338B781FEF /* NotoSansCJKkr-Light.otf */,
+				7EEE08BD1EEE4B6F95EC9261 /* NotoSansCJKkr-Medium.otf */,
+				168CF781DB6A404E89384003 /* NotoSansCJKkr-Regular.otf */,
+				08448FDA11844C62A0CB025A /* NotoSansCJKkr-Thin.otf */,
+				FB3B1BAAE5B2452799D7C2A7 /* NotoSansMonoCJKkr-Bold.otf */,
+				AF027E6196304BB28572EF7C /* NotoSansMonoCJKkr-Regular.otf */,
+				58E1E354B39D4CD1AEFF25B5 /* PretendardVariable.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -265,6 +304,16 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				211C9E582B67FA58007F1D8B /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				9ADA42A77F8444AFA88BB1A5 /* NotoSansCJKkr-Black.otf in Resources */,
+				AEB82F283BB547EA9FA259C6 /* NotoSansCJKkr-Bold.otf in Resources */,
+				B4455242F3E34CDA9CF1EDBF /* NotoSansCJKkr-DemiLight.otf in Resources */,
+				0C9CB0AF5D9F436093FE18DF /* NotoSansCJKkr-Light.otf in Resources */,
+				5857FFF635114D83BED1697C /* NotoSansCJKkr-Medium.otf in Resources */,
+				F7D193BB60F6409DBC168738 /* NotoSansCJKkr-Regular.otf in Resources */,
+				5A6673DD87A54C81811682B9 /* NotoSansCJKkr-Thin.otf in Resources */,
+				8F8274909A8B4B99AB157462 /* NotoSansMonoCJKkr-Bold.otf in Resources */,
+				BF31F640E9F04273901C9E7C /* NotoSansMonoCJKkr-Regular.otf in Resources */,
+				B7700BCFD3574047AA622F5C /* PretendardVariable.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
