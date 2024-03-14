@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import FirstPage from './screens/FirstPage';
 import StepPage from './screens/StepPage';
+import SellectPage from './screens/SellectPage';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +24,12 @@ export default function App() {
                         headerShown: false,
                     }}
                 />
-
+                <Stack.Screen name="SellectPage"
+                    component={SellectPage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

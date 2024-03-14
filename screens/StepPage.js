@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { useNavigation } from '@react-navigation/native';
 
 const StepPage = () => {
+
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            navigation.navigate('SellectPage');
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <View>
 
@@ -47,6 +58,7 @@ const StepPage = () => {
                 </View>
 
             </View>
+
 
         </View>
 
