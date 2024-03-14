@@ -22,9 +22,12 @@ const SellectPage = () => {
                     </View>
                 </TouchableOpacity>
 
-                <View style={styles.Ok}>
-                    <Text style={styles.okText}>완료하기</Text>
-                </View>
+                <TouchableOpacity onPress={() => navigation.navigate('CheckListPage')}>
+                    <View style={styles.Ok}>
+                        <Text style={styles.okText}>완료하기</Text>
+                    </View>
+                </TouchableOpacity>
+
             </View>
 
         </View>
