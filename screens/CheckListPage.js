@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
@@ -79,9 +79,13 @@ const CheckListPage = () => {
                     </View>
                 </TouchableOpacity>
 
-                <View style={styles.Ok}>
-                    <Text style={styles.okText}>완료하기</Text>
-                </View>
+                <TouchableOpacity onPress={() => navigation.navigate('CompletePage')}>
+
+                    <View style={styles.Ok}>
+                        <Text style={styles.okText}>완료하기</Text>
+                    </View>
+                </TouchableOpacity>
+
             </View>
 
         </View>
