@@ -7,6 +7,7 @@ import StepPage from './screens/StepPage';
 import SellectPage from './screens/SellectPage'; 
 import CheckListPage from './screens/CheckListPage';
 import CompletePage from './screens/CompletePage';
+import QRcodePage from './screens/QRcodePage';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,12 @@ export default function App() {
                 />
                 <Stack.Screen name="CompletePage"
                     component={CompletePage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen name="QRcodePage"
+                    component={QRcodePage}
                     options={{
                         headerShown: false,
                     }}

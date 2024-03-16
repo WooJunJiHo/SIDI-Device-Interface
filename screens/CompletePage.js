@@ -42,7 +42,7 @@ const CompletePage = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('CheckListPage')}>
+                <TouchableOpacity onPress={() => navigation.navigate('QRcodePage')}>
                     <View style={styles.Ok}>
                         <Text style={styles.okText}>등록하기</Text>
                     </View>
