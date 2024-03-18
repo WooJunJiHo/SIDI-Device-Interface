@@ -1,53 +1,39 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import QRCode from 'react-native-qrcode-svg';
 
-const QRcodePage = () => {
+
+const FinishPage = () => {
     const navigation = useNavigation();
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            navigation.navigate('FinishPage');
-        }, 5000);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
         <View>
 
             <View style={styles.mainContainer}>
                 <Text style={styles.mainText}>
-                    <Text style={styles.highlightedText}>QR 코드</Text>를 찍어주세요
+                    <Text style={styles.highlightedText}>자산 등록</Text>이 <Text style={styles.highlightedText}>완료</Text>되었습니다
                 </Text>
             </View>
-            <View style={styles.QRContainer}>
-                <QRCode
-                    size={400}
-                    value="https://www.youtube.com/watch?v=crYY_Y9OczU"
-                    logoSize={300}
-                    logoBackgroundColor='transparent'
-                />
-            </View>
-
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <View style={styles.back}>
-                        <Text style={styles.backText}>취소하기</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('FirstPage')}>
+                    <View style={styles.Ok}>
+                        <Text style={styles.okText}>처음으로</Text>
                     </View>
                 </TouchableOpacity>
+
             </View>
+
         </View>
-    )
+
+    );
 };
 
 const styles = StyleSheet.create({
     mainContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 120,
+        marginTop: 320,
     },
     mainText: {
         fontFamily: 'NotoSansCJKkr-Bold',
@@ -57,17 +43,10 @@ const styles = StyleSheet.create({
     highlightedText: {
         color: '#6C60F1',
     },
-    QRContainer: {
-        backgroundColor: '#D2D2D2',
-        width: 400,
-        height: 400,
-        borderRadius: 20,
-        alignSelf: 'center',
-    },
     buttonContainer: {
         flexDirection: 'row',
         alignSelf: 'center',
-        marginTop: 40,
+        marginTop: 10,
     },
     back: {
         borderColor: '#767676',
@@ -83,8 +62,22 @@ const styles = StyleSheet.create({
         color: '#767676',
         alignSelf: 'center',
     },
+    Ok: {
+        backgroundColor: '#6C60F1',
+        width: 280,
+        height: 80,
+        borderRadius: 40,
+        justifyContent: 'center',
+        marginLeft: 20,
+    },
+    okText: {
+        fontFamily: 'NotoSansCJKkr-Bold',
+        fontSize: 24,
+        color: '#FFFFFF',
+        alignSelf: 'center',
+    },
 });
 
 
 
-export default QRcodePage;
+export default FinishPage;
