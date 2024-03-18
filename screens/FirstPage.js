@@ -30,7 +30,7 @@ const FirstPage = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ExplanationPage')}>
                     <View style={styles.explanation}>
                         <Text style={styles.startText}>기술 설명</Text>
                         <Image

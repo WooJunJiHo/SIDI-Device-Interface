@@ -8,7 +8,8 @@ import SellectPage from './screens/SellectPage';
 import CheckListPage from './screens/CheckListPage';
 import CompletePage from './screens/CompletePage';
 import QRcodePage from './screens/QRcodePage';
-import FinishiPage from './screens/FinishPage';
+import FinishPage from './screens/FinishPage';
+import ExplanationPage from './screens/ExplanationPage';
 
 const Stack = createStackNavigator();
 
@@ -53,7 +54,13 @@ export default function App() {
                     }}
                 />
                 <Stack.Screen name="FinishPage"
-                    component={FinishiPage}
+                    component={FinishPage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen name="ExplanationPage"
+                    component={ExplanationPage}
                     options={{
                         headerShown: false,
                     }}
