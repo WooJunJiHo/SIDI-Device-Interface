@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-
+import QRCode from 'react-native-qrcode-svg';
 
 const QRcodePage = () => {
     const navigation = useNavigation();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            navigation.navigate('CompletePage');
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <View>
@@ -16,7 +24,12 @@ const QRcodePage = () => {
                 </Text>
             </View>
             <View style={styles.QRContainer}>
-
+                <QRCode
+                    size={400}
+                    value="https://www.youtube.com/watch?v=crYY_Y9OczU"
+                    logoSize={300}
+                    logoBackgroundColor='transparent'
+                />
             </View>
 
             <View style={styles.buttonContainer}>
@@ -27,8 +40,7 @@ const QRcodePage = () => {
                 </TouchableOpacity>
             </View>
         </View>
-
-    );
+    )
 };
 
 const styles = StyleSheet.create({
