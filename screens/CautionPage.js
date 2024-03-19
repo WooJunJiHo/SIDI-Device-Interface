@@ -3,13 +3,13 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-const StepPage = () => {
+const CautionPage = () => {
 
     const navigation = useNavigation();
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigation.navigate('CautionPage');
+            navigation.navigate('SellectPage');
         }, 5000);
 
         return () => clearTimeout(timer);
@@ -20,7 +20,7 @@ const StepPage = () => {
 
             <View style={styles.mainContainer}>
                 <Text style={styles.mainText}>
-                    <Text style={styles.highlightedText}>사용 방법</Text>을 알려드릴게요
+                    <Text style={styles.highlightedText}>주의사항</Text>
                 </Text>
             </View>
 
@@ -29,10 +29,10 @@ const StepPage = () => {
 
                 <View style={styles.stepContainer}>
                     <Text style={styles.startText}>1</Text>
-                    <Text style={styles.startSubText}>핸드폰을 기기 안에 넣으세요</Text>
+                    <Text style={styles.startSubText}>뒷면이 위로 오게 놔주세요</Text>
                     <Image
-                        source={require('../assets/images/Inside.png')}
-                        style={{ width: 400, height: 280, marginTop: 4, marginLeft: 90 }}
+                        source={require('../assets/images/BackPhone.png')}
+                        style={{ width: 600, height: 280, marginTop: 4, marginLeft: 40 }}
                     />
                 </View>
 
@@ -40,9 +40,9 @@ const StepPage = () => {
 
                 <View style={styles.stepContainer2}>
                     <Text style={styles.startText}>2</Text>
-                    <Text style={styles.startSubText}>기기 문을 닫아주세요</Text>
+                    <Text style={styles.startSubText}>핸드폰이 정중앙에 오게 놔주세요</Text>
                     <Image
-                        source={require('../assets/images/Close.png')}
+                        source={require('../assets/images/Center.png')}
                         style={{ width: 400, height: 280, marginTop: 4, marginLeft: 90 }}
                     />
                 </View>
@@ -50,9 +50,9 @@ const StepPage = () => {
 
                 <View style={styles.stepContainer3}>
                     <Text style={styles.startText}>3</Text>
-                    <Text style={styles.startSubText}>완료 버튼을 누르세요</Text>
+                    <Text style={styles.startSubText}>악세사리는 때주세요</Text>
                     <Image
-                        source={require('../assets/images/Finish.png')}
+                        source={require('../assets/images/Grip.png')}
                         style={{ width: 400, height: 280, marginTop: 4, marginLeft: 90 }}
                     />
                 </View>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
     },
     stepContainer2: {
-        backgroundColor: '#F2B500',
+        backgroundColor: '#87CEEB',
         width: 400,
         height: 400,
         marginLeft: 90,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
     },
     stepContainer3: {
-        backgroundColor: '#42ACFA',
+        backgroundColor: '#34A853',
         width: 400,
         height: 400,
         marginLeft: 90,
@@ -138,4 +138,4 @@ const styles = StyleSheet.create({
 
 
 
-export default StepPage;
+export default CautionPage;

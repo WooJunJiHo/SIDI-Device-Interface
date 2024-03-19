@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import FirstPage from './screens/FirstPage';
 import StepPage from './screens/StepPage';
+import CautionPage from './screens/CautionPage';
 import SellectPage from './screens/SellectPage'; 
 import CheckListPage from './screens/CheckListPage';
 import CompletePage from './screens/CompletePage';
@@ -61,6 +62,12 @@ export default function App() {
                 />
                 <Stack.Screen name="ExplanationPage"
                     component={ExplanationPage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen name="CautionPage"
+                    component={CautionPage}
                     options={{
                         headerShown: false,
                     }}
