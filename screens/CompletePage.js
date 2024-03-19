@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         marginTop: -20
     },
     inforView: {
-        width: 800,
+        width: 900,
         height: 400,
         marginTop: 20,
         alignSelf: 'center',
@@ -118,10 +118,9 @@ const styles = StyleSheet.create({
     },
     graphView: {
         backgroundColor: '#FAFAFA',
-        width: 400,
+        width: 570,
         height: 400,
         borderRadius: 30,
-        marginLeft: 40,
     },
     graphInforView: {
         width: 300,

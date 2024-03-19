@@ -43,15 +43,16 @@ const Chart = () => {
 
   ];
 
-  const spacing = (width / ptData.length) - 38;
+  const spacing = (width / ptData.length) - 36;
 
   return (
     <View
       style={{
         marginTop: 80,
-        marginLeft: 30,
+        marginLeft: 50,
       }}>
       <LineChart
+        style={styles.chart}
         areaChart
         data={ptData}
         rotateLabel={false}
@@ -60,10 +61,10 @@ const Chart = () => {
         spacing={spacing}
         rulesType="none"
         color="#00FF80"
-        thickness={5}
+        thickness={6}
         startOpacity={0}
         endOpacity={0}
-        initialSpacing={0}
+        initialSpacing={36}
         noOfSections={6}
         maxValue={600}
         yAxisThickness={0}
@@ -121,3 +122,8 @@ const Chart = () => {
 
 export default Chart;
 
+const styles = StyleSheet.create({
+  chart: {
+    overflow: 'visible',
+  },
+});
