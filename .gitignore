@@ -18,6 +18,7 @@ android/local.properties
 
 # 개발 환경 설정과 관련된 파일
 .env
+env.js
 *.log
 npm-debug.log*
 

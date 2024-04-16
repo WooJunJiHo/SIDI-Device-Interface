@@ -1,12 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import FastImage from 'react-native-fast-image';
+
+//라즈베리파이 요청
+import { fetchImages, fetchColor } from '../components/Fetch/FetchData';
 
 
 const SellectPage = () => {
     const navigation = useNavigation();
+    const [load, setLoad] = useState(null);
+    const [images, setImages] = useState();
+    const [color, setColor] = useState();
 
+
+
+    if (load == 'image') {
+        return (
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <FastImage style={{width: 315, height: 400}} source={require('../assets/images/cameraLoading.gif')}/>
+                <Text style={[styles.highlightedText, {fontSize: 40}]}>사진 촬영중...</Text>
+            </View>
+        )
+    } else if (load == 'color') {
+        return (
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <FastImage style={{width: 309, height: 400}} source={require('../assets/images/analyzeLoading.gif')}/>
+                <Text style={[styles.highlightedText, {fontSize: 40}]}>자산 분석중...</Text>
+            </View>
+        )
+    }
     return (
         <View>
 
@@ -22,14 +46,28 @@ const SellectPage = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('CheckListPage')}>
+                <TouchableOpacity
+                    onPress={() => {
+                        const fetch = async () => {
+                            setLoad('image')
+                            const imageResult = await fetchImages()
+                            setLoad('color')
+                            const colorResult = await fetchColor()
+                            setLoad(null)
+                            setImages(imageResult)
+                            setColor(colorResult)
+                            console.log(imageResult)
+                            console.log(colorResult)
+                            //navigation.navigate('CheckListPage')
+                        }
+                        fetch()
+                    }}>
                     <View style={styles.Ok}>
                         <Text style={styles.okText}>완료하기</Text>
                     </View>
                 </TouchableOpacity>
 
             </View>
-
         </View>
 
     );
