@@ -25,9 +25,15 @@ export const fetchImages = async () => {
 
 
 // 서버로부터 이미지를 색상 패치
-export const fetchColor = async () => {
+export const fetchColor = async (imageData) => {
     try {
-        const response = await fetch(`${keys.flaskURL}/color`);
+        const response = await fetch(`${keys.flaskURL}/color`, {
+            method: 'POST', // POST 요청 설정
+            headers: {
+                'Content-Type': 'application/json' // JSON 형식의 데이터 전송
+            },
+            body: JSON.stringify(imageData) // 빈 객체를 JSON 문자열로 변환하여 전송 (필요에 따라 데이터 추가 가능)
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

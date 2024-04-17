@@ -52,7 +52,7 @@ const SellectPage = () => {
                             setLoad('image')
                             const imageResult = await fetchImages()
                             setLoad('color')
-                            const colorResult = await fetchColor()
+                            const colorResult = await fetchColor(imageResult)
                             setLoad(null)
                             setImages(imageResult)
                             setColor(colorResult)
