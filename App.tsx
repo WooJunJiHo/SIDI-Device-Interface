@@ -5,7 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FirstPage from './screens/FirstPage';
 import StepPage from './screens/StepPage';
 import CautionPage from './screens/CautionPage';
-import SellectPage from './screens/SellectPage'; 
+import SellectPage from './screens/SellectPage';
+import ModelSellectPage from './screens/ModelSellectPage';
 import CheckListPage from './screens/CheckListPage';
 import CompletePage from './screens/CompletePage';
 import QRcodePage from './screens/QRcodePage';
@@ -36,8 +37,14 @@ export default function App() {
                         headerShown: false,
                     }}
                 />
-                 <Stack.Screen name="CheckListPage"
+                <Stack.Screen name="CheckListPage"
                     component={CheckListPage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen name="ModelSellectPage"
+                    component={ModelSellectPage}
                     options={{
                         headerShown: false,
                     }}

@@ -51,14 +51,10 @@ const SellectPage = () => {
                         const fetch = async () => {
                             setLoad('image')
                             const imageResult = await fetchImages()
-                            setLoad('color')
-                            const colorResult = await fetchColor(imageResult)
                             setLoad(null)
                             setImages(imageResult)
-                            setColor(colorResult)
                             console.log(imageResult)
-                            console.log(colorResult)
-                            //navigation.navigate('CheckListPage')
+                            navigation.navigate('ModelSellectPage', {assetName: imageResult})
                         }
                         fetch()
                     }}>
