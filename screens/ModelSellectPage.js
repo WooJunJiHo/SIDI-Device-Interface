@@ -10,7 +10,7 @@ import FastImage from 'react-native-fast-image';
 
 
 //DB 로드
-import { getColors, getInfos, fetchColor } from '../components/Fetch/FetchData'
+import { getInfos, fetchColor } from '../components/Fetch/FetchData'
 
 
 const ModelSellectPage = (props) => {
@@ -19,7 +19,7 @@ const ModelSellectPage = (props) => {
 
     const isFocused = useIsFocused();
 
-    const [colors, setColors] = useState(null)
+    const [asset, setAsset] = useState(null)
     const [infos, setInfos] = useState(null)
     const [rgb, setRGB] = useState(null)
     const [load, setLoad] = useState(false)
@@ -30,8 +30,6 @@ const ModelSellectPage = (props) => {
             setLoad(false)
             const infoResult = await getInfos(assetName) 
             setInfos(infoResult)
-            const colorResult = await getColors()
-            setColors(colorResult)
             setLoad(true)
         }
         loadColor()
@@ -57,6 +55,25 @@ const ModelSellectPage = (props) => {
                     <View style={{width: 100, height: 100, borderRadius: 200, backgroundColor: rgb.RGB}}></View>
                     <Text style={{fontSize: 30}}>{rgb.color}</Text>
                 </View>
+                <View style={{flexDirection: 'row'}}>
+                    <TouchableOpacity 
+                        style={[styles.checkBtn, {backgroundColor: '#767676', marginRight: 100,}]}
+                        onPress={() => {
+                            setLoad(true)
+                        }}    
+                    >
+                        <Text style={styles.btnText}>다시 선택</Text>
+                    </TouchableOpacity>    
+                    <TouchableOpacity 
+                        style={[styles.checkBtn, {backgroundColor: '#6C60F1'}]}
+                        onPress={() => {
+                            props.navigation.navigate('CheckListPage', {rgb: rgb, asset: asset})
+                        }}
+                    >
+                        <Text style={styles.btnText}>완료</Text>
+                    </TouchableOpacity>   
+                </View>
+                
             </View>
         )
     }
@@ -71,6 +88,13 @@ const ModelSellectPage = (props) => {
                                 setLoad('color')
                                 const result = await fetchColor({index: item.AssetsMoreInfoID, name: `${item.COMPANY} ${item.MODEL} ${item.MORE}`})
                                 setRGB(result)
+                                setAsset({
+                                    index: item.AssetsMoreInfoID,
+                                    COMPANY: item.COMPANY,
+                                    MODEL: item.MODEL,
+                                    MORE: item.MORE,
+                                    CATEGORY: assetName.category,
+                                })
                                 setLoad('colorResult')
                             }
                             fetchFlask()
@@ -116,4 +140,16 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 2,
     },
+
+    checkBtn: {
+        width: 150,
+        height: 80,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnText: {
+        color: 'white',
+        fontSize: 18,
+    }
 })

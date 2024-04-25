@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
 
 const ChecklistItem = ({ text, checked, onPress, style, children }) => {
     return (
@@ -18,8 +17,11 @@ const ChecklistItem = ({ text, checked, onPress, style, children }) => {
 
 
 
-const CheckListPage = () => {
-    const navigation = useNavigation();
+const CheckListPage = (props) => {
+    const { params } = props.route;
+    const asset = params ? params.asset : null;
+    const rgb = params ? params.rgb : null;
+
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
     const [isChecked3, setIsChecked3] = useState(false);
@@ -73,13 +75,13 @@ const CheckListPage = () => {
             </View>
 
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('FirstPage')}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('FirstPage')}>
                     <View style={styles.back}>
                         <Text style={styles.backText}>처음으로</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('CompletePage')}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('CompletePage', {rgb: rgb, asset: asset})}>
 
                     <View style={styles.Ok}>
                         <Text style={styles.okText}>완료하기</Text>

@@ -92,3 +92,25 @@ export const getColors = async () => {
         throw error; // 에러를 상위로 다시 던지기
     }
 }
+
+// /getInfo에 GET 요청 보내기 
+export const getPrices = async () => {
+    try {
+        const response = await axios.get(`${keys.nodeURL}/getScrapingAssets`);
+        return response.data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error; // 에러를 상위로 다시 던지기
+    }
+}
+
+
+export const addAsset = async (data) => {
+    try {
+        const response = await axios.post(`${keys.nodeURL}/addAsset`, data);
+        return response.data;
+    } catch (error) {
+        console.error('Error:', error);
+        throw error; // 에러를 상위로 다시 던지기
+    }
+}

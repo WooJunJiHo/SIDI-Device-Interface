@@ -1,12 +1,51 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, ActivityIndicator } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
 import LineChart from '../components/LineChart/LineChart';
+import { useIsFocused } from '@react-navigation/native';
+import { useState, useEffect } from 'react';
+
+//db로드
+import { getPrices, addAsset } from '../components/Fetch/FetchData'
+
+//price 필터링 함수
+import { filterPriceList, priceAverage } from '../components/utils/filterPriceList'
 
 
-const CompletePage = () => {
-    const navigation = useNavigation();
+const CompletePage = (props) => {
+    const { params } = props.route;
+    const asset = params ? params.asset : null;
+    const rgb = params ? params.rgb : null
+
+    const isFocused = useIsFocused();
+
+    const [prices, setPrices] = useState(null)
+    const [average, setAverage] = useState('')
+    const [addID, setAddID] = useState(null)
+
+    useEffect(() => {
+        const fetchPrice = async () => {
+            const result = await getPrices()
+
+            const filteredList = filterPriceList(result, `${asset.COMPANY} ${asset.MODEL} ${asset.MORE}`)
+            setPrices(filteredList)
+            const avgResult = priceAverage(filteredList)
+            setAverage(avgResult)
+
+            const addResult = await addAsset({
+                index: asset.index,
+                COMPANY: asset.COMPANY,
+                MODEL: asset.MODEL,
+                MORE: asset.MORE,
+                CATEGORY: asset.CATEGORY,
+                RGB: rgb.RGB,
+                COLOR: rgb.color    
+            });
+            setAddID(addResult.id)
+        }
+        fetchPrice()
+    }, [isFocused])
+
 
     return (
         <View>
@@ -18,12 +57,12 @@ const CompletePage = () => {
             </View>
 
             <View>
-                <Text style={styles.kind}>아이폰 12 PRO 화이트</Text>
+                <Text style={styles.kind}>{asset.COMPANY} {asset.MODEL} {asset.MORE} {rgb.color}</Text>
             </View>
 
             <View style={styles.inforView}>
                 <View style={styles.graphView}>
-                    <LineChart/>
+                    {prices != null ? <LineChart ptData={prices} /> : <ActivityIndicator size={'large'} />}
                 </View>
                 <View style={styles.graphInforView}>
                     <Text style={styles.situation}>상태</Text>
@@ -32,17 +71,17 @@ const CompletePage = () => {
                     <View style={styles.barView}>
                     </View>
                     <Text style={styles.situation}>측정가</Text>
-                    <Text style={styles.situationText}>1,210,000원</Text>
+                    <Text style={styles.situationText}>{average}원</Text>
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('FirstPage')}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('FirstPage')}>
                     <View style={styles.back}>
                         <Text style={styles.backText}>처음으로</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('QRcodePage')}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('QRcodePage', {id: addID})}>
                     <View style={styles.Ok}>
                         <Text style={styles.okText}>등록하기</Text>
                     </View>

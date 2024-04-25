@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 
 //라즈베리파이 요청
 import { fetchImages, fetchColor } from '../components/Fetch/FetchData';
 
 
-const SellectPage = () => {
-    const navigation = useNavigation();
+const SellectPage = (props) => {
     const [load, setLoad] = useState(null);
     const [images, setImages] = useState();
     const [color, setColor] = useState();
@@ -40,7 +38,7 @@ const SellectPage = () => {
                 </Text>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('FirstPage')}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('FirstPage')}>
                     <View style={styles.back}>
                         <Text style={styles.backText}>처음으로</Text>
                     </View>
@@ -53,8 +51,7 @@ const SellectPage = () => {
                             const imageResult = await fetchImages()
                             setLoad(null)
                             setImages(imageResult)
-                            console.log(imageResult)
-                            navigation.navigate('ModelSellectPage', {assetName: imageResult})
+                            props.navigation.navigate('ModelSellectPage', {assetName: imageResult})
                         }
                         fetch()
                     }}>
