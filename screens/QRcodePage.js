@@ -6,6 +6,7 @@ import QRCode from 'react-native-qrcode-svg';
 const QRcodePage = (props) => {
     const { params } = props.route;
     const id = params ? params.id : null;
+    const asset = params ? params.asset : null;
 
     // useEffect(() => {
     //     const timer = setTimeout(() => {
@@ -27,7 +28,10 @@ const QRcodePage = (props) => {
                 {id == null ? <ActivityIndicator size={'large'}/> :
                     <QRCode
                         size={400}
-                        value={String(id)}
+                        value={JSON.stringify({
+                            id: id,
+                            asset: asset
+                        })}
                         logoSize={300}
                         logoBackgroundColor='transparent'
                     />
