@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { LineChart } from "react-native-gifted-charts";
 import { Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
+//데이터 필터링 
+import { subtractMaxValue } from '../utils/filterPriceList'
+
 const Chart = (props) => {
   const ptData = props.ptData
+  
+  const maxValue = subtractMaxValue(ptData)
 
-  const spacing = (width / ptData.length) -13;
+  const spacing = 520 / ptData.length;
 
   return (
     <View
@@ -31,7 +36,7 @@ const Chart = (props) => {
         endOpacity={0}
         initialSpacing={36}
         noOfSections={6}
-        maxValue={1500000}
+        maxValue={maxValue + (maxValue*1)}
         yAxisThickness={0}
         rulesColor="#fafafa"
         xAxisThickness={0}

@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const StepPage = () => {
+const StepPage = (props) => {
 
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            navigation.navigate('CautionPage');
-        }, 5000);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
-        <View>
+        <TouchableOpacity
+            onPress={() => {
+                props.navigation.navigate('CautionPage');
+            }}
+        >
 
             <View style={styles.mainContainer}>
                 <Text style={styles.mainText}>
@@ -56,11 +50,12 @@ const StepPage = () => {
                         style={{ width: 400, height: 280, marginTop: 4, marginLeft: 90 }}
                     />
                 </View>
-
+                
             </View>
+            <Text style={styles.nextBtn}>다음으로</Text>
+            
 
-
-        </View>
+        </TouchableOpacity>
 
     );
 };
@@ -133,7 +128,17 @@ const styles = StyleSheet.create({
         height: 400,
         marginLeft: 80,
         borderRadius: 30,
-    }
+    },
+
+
+    nextBtn: {
+        textAlign: 'right', 
+        marginRight: 100, 
+        marginTop: 100,
+        fontSize: 30,
+        color: 'gray',
+        fontFamily: 'NotoSansCJKkr-Bold',
+    },
 });
 
 

@@ -1,22 +1,13 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
-const CautionPage = () => {
-
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            navigation.navigate('SellectPage');
-        }, 5000);
-
-        return () => clearTimeout(timer);
-    }, []);
-
+const CautionPage = (props) => {
     return (
-        <View>
+        <TouchableOpacity
+            onPress={() => {
+                props.navigation.navigate('SellectPage');
+            }}
+        >
 
             <View style={styles.mainContainer}>
                 <Text style={styles.mainText}>
@@ -58,9 +49,10 @@ const CautionPage = () => {
                 </View>
 
             </View>
+            <Text style={styles.nextBtn}>다음으로</Text>
 
 
-        </View>
+        </TouchableOpacity>
 
     );
 };
@@ -133,7 +125,17 @@ const styles = StyleSheet.create({
         height: 400,
         marginLeft: 80,
         borderRadius: 30,
-    }
+    },
+
+
+    nextBtn: {
+        textAlign: 'right', 
+        marginRight: 100, 
+        marginTop: 100,
+        fontSize: 30,
+        color: 'gray',
+        fontFamily: 'NotoSansCJKkr-Bold',
+    },
 });
 
 

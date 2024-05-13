@@ -26,7 +26,6 @@ const CompletePage = (props) => {
     useEffect(() => {
         const fetchPrice = async () => {
             const result = await getPrices()
-
             const filteredList = filterPriceList(result, `${asset.COMPANY} ${asset.MODEL} ${asset.MORE}`)
             setPrices(filteredList)
             const avgResult = priceAverage(filteredList)

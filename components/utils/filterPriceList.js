@@ -57,3 +57,16 @@ export const priceAverage = (list) => {
 
     return roundedAverageValue
 }
+
+
+
+//배열에서 가장 비싼 값 찾기
+export function subtractMaxValue(data) {
+    // 데이터에서 value 속성만 추출하여 배열로 만듭니다.
+    const values = data.map(item => item.value);
+    
+    // 배열에서 최대값을 찾습니다.
+    const maxValue = Math.max(...values);
+    
+    return maxValue;
+}
