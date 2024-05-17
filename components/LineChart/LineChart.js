@@ -50,7 +50,7 @@ const Chart = (props) => {
         lineGradientStartColor='#CE9FFC'
         lineGradientEndColor='#7367F0'
         pointerConfig={{
-          pointerStripHeight: 150,
+          pointerStripHeight: 160,
           pointerStripColor: '#6C60F1',
           pointerStripWidth: 2,
           pointerColor: '#6C60F1',
@@ -67,6 +67,7 @@ const Chart = (props) => {
                 style={{
                   height: 150,
                   width: 70,
+                  alignItems: 'center',
                   justifyContent: 'center',
                   marginTop: -50,
                   marginLeft: -25,
@@ -76,9 +77,9 @@ const Chart = (props) => {
                 </Text>
                 
 
-                <View style={{ paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16, backgroundColor: '#6C60F1', width: 70 }}>
+                <View style={{ paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16, backgroundColor: '#6C60F1', width: 90 }}>
                   <Text style={{ fontWeight: 'bold', textAlign: 'center', color: '#FFFFFF' }}>
-                    {'$' + items[0].value + '.0'}
+                    {items[0].value + '원'}
                   </Text>
                 </View>
               </View>

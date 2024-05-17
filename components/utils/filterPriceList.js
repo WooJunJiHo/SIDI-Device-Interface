@@ -38,7 +38,7 @@ export const filterPriceList = (list, asset) => {
 
     // 변환된 데이터
     const transformedData = filledData.map(item => ({
-        value: item.PRICE,
+        value: Math.floor(item.PRICE),
         date: new Date(item.DATE).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
     }));
 
