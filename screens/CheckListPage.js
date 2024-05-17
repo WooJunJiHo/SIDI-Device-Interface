@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Image, ActivityIndicator } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useIsFocused } from '@react-navigation/native';
+
+//flask axios
+import { fetchCondition } from '../components/Fetch/FetchData';
 
 const ChecklistItem = ({ text, checked, onPress, style, children }) => {
     return (
@@ -22,9 +26,25 @@ const CheckListPage = (props) => {
     const asset = params ? params.asset : null;
     const rgb = params ? params.rgb : null;
 
+    const isFocused = useIsFocused();
+
+    const [load, setLoad] = useState(true)
+    const [condition, setCondition] = useState()
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
     const [isChecked3, setIsChecked3] = useState(false);
+    const [isChecked4, setIsChecked4] = useState(false);
+
+
+    useEffect(() => {
+        const fetched = async () => {
+            setLoad(true)
+            const response = await fetchCondition(asset)
+            setCondition(response)
+            setLoad(false)
+        }
+        fetched()
+    }, [isFocused])
 
     return (
         <View>
@@ -47,7 +67,7 @@ const CheckListPage = (props) => {
                         style={{ marginTop: 8 }}
                     />
                 </ChecklistItem>
-                <Text style={styles.checkText}>버튼 고장</Text>
+                <Text style={styles.checkText}>새상품</Text>
 
                 <ChecklistItem
                     checked={isChecked2}
@@ -59,7 +79,7 @@ const CheckListPage = (props) => {
                         style={{ marginTop: 8 }}
                     />
                 </ChecklistItem>
-                <Text style={styles.checkText}>측면 기스</Text>
+                <Text style={styles.checkText}>기스</Text>
 
                 <ChecklistItem
                     checked={isChecked3}
@@ -71,7 +91,19 @@ const CheckListPage = (props) => {
                         style={{ marginTop: 8 }}
                     />
                 </ChecklistItem>
-                <Text style={styles.checkText}>스피커 고장</Text>
+                <Text style={styles.checkText}>액정 파손</Text>
+
+                <ChecklistItem
+                    checked={isChecked4}
+                    onPress={() => setIsChecked4(!isChecked4)}
+                    style={{ width: 60, height: 60, marginTop: 20 }}
+                >
+                    <Image
+                        source={require('../assets/images/Vector.png')}
+                        style={{ marginTop: 8 }}
+                    />
+                </ChecklistItem>
+                <Text style={styles.checkText}>기능 고장</Text>
             </View>
 
             <View style={styles.buttonContainer}>
@@ -80,16 +112,39 @@ const CheckListPage = (props) => {
                         <Text style={styles.backText}>처음으로</Text>
                     </View>
                 </TouchableOpacity>
+                {load == true ?
+                    <TouchableOpacity>
+                        <View style={styles.Ok}>
+                            <ActivityIndicator size={'large'} color={'white'}/>
+                        </View>
+                    </TouchableOpacity> :
+                    <TouchableOpacity 
+                        onPress={() => {
+                            let stat;
+                            if(isChecked4 == true) {
+                                stat = '기능 고장'
+                            } else if (isChecked3 == true) {
+                                stat = '액정 파손'
+                            } else if (condition.condition == '파손') {
+                                stat = '외판 파손'
+                            } else if (isChecked2 == true) {
+                                stat = '기스'
+                            } else if (!isChecked1 && !isChecked2 && !isChecked3 && !isChecked4 && condition.condition=='정상') {
+                                stat = '이상 없음'
+                            } else if (isChecked1 == true) {
+                                stat = '새상품'
+                            }
+                            props.navigation.navigate('CompletePage', { rgb: rgb, asset: asset, condition: stat })
+                        }}
+                    >
 
-                <TouchableOpacity onPress={() => props.navigation.navigate('CompletePage', {rgb: rgb, asset: asset})}>
-
-                    <View style={styles.Ok}>
-                        <Text style={styles.okText}>완료하기</Text>
-                    </View>
-                </TouchableOpacity>
-
+                        <View style={styles.Ok}>
+                            <Text style={styles.okText}>완료하기</Text>
+                        </View>
+                    </TouchableOpacity>
+                }
             </View>
-
+            {condition != null &&condition.condition == '파손' ? <Text>외판 파손이 감지되었습니다</Text> : <></>} 
         </View>
 
     );

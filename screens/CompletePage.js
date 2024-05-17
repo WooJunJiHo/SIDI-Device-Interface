@@ -15,7 +15,8 @@ import { filterPriceList, priceAverage } from '../components/utils/filterPriceLi
 const CompletePage = (props) => {
     const { params } = props.route;
     const asset = params ? params.asset : null;
-    const rgb = params ? params.rgb : null
+    const rgb = params ? params.rgb : null;
+    const condition = params ? params.condition : null;
 
     const isFocused = useIsFocused();
 
@@ -38,7 +39,8 @@ const CompletePage = (props) => {
                 MORE: asset.MORE,
                 CATEGORY: asset.CATEGORY,
                 RGB: rgb.RGB,
-                COLOR: rgb.color    
+                COLOR: rgb.color,
+                CONDITIONS: condition  
             });
             setAddID(addResult.id)
         }
@@ -65,8 +67,7 @@ const CompletePage = (props) => {
                 </View>
                 <View style={styles.graphInforView}>
                     <Text style={styles.situation}>상태</Text>
-                    <Text style={styles.situationText}>외판 손상</Text>
-                    <Text style={styles.situationText}>액정 손상</Text>
+                    <Text style={styles.situationText}>{condition}</Text>
                     <View style={styles.barView}>
                     </View>
                     <Text style={styles.situation}>측정가</Text>
