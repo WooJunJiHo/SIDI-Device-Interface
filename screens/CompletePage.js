@@ -27,7 +27,7 @@ const CompletePage = (props) => {
     useEffect(() => {
         const fetchPrice = async () => {
             const result = await getPrices()
-            const filteredList = filterPriceList(result, `${asset.COMPANY} ${asset.MODEL} ${asset.MORE}`)
+            const filteredList = filterPriceList(result, `${asset.COMPANY} ${asset.MODEL} ${asset.MORE}`, condition)
             setPrices(filteredList)
             const avgResult = priceAverage(filteredList)
             setAverage(avgResult)
@@ -81,7 +81,7 @@ const CompletePage = (props) => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.navigation.navigate('QRcodePage', {id: addID, asset: asset})}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('QRcodePage', {id: addID, asset: asset, condition: condition})}>
                     <View style={styles.Ok}>
                         <Text style={styles.okText}>등록하기</Text>
                     </View>
