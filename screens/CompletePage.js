@@ -81,7 +81,7 @@ const CompletePage = (props) => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.navigation.navigate('QRcodePage', {id: addID, asset: asset, condition: condition})}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('QRcodePage', {id: addID, asset: asset, condition: condition, rgb: rgb})}>
                     <View style={styles.Ok}>
                         <Text style={styles.okText}>등록하기</Text>
                     </View>

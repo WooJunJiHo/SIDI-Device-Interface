@@ -8,6 +8,7 @@ const QRcodePage = (props) => {
     const id = params ? params.id : null;
     const asset = params ? params.asset : null;
     const condition = params ? params.condition : null;
+    const rgb = params ? params.rgb : null;
 
     // useEffect(() => {
     //     const timer = setTimeout(() => {
@@ -32,7 +33,8 @@ const QRcodePage = (props) => {
                         value={JSON.stringify({
                             id: id,
                             asset: asset,
-                            condition: condition
+                            condition: condition,
+                            rgb: rgb,
                         })}
                         logoSize={300}
                         logoBackgroundColor='transparent'
