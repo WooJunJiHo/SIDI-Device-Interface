@@ -12,6 +12,7 @@ import CompletePage from './screens/CompletePage';
 import QRcodePage from './screens/QRcodePage';
 import FinishPage from './screens/FinishPage';
 import ExplanationPage from './screens/ExplanationPage';
+import SIDI from './screens/SIDI'
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,12 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen name="SIDI"
+                    component={SIDI}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
                 <Stack.Screen name="FirstPage"
                     component={FirstPage}
                     options={{
