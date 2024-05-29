@@ -1,24 +1,13 @@
 import axios from "axios";
 
-//서버 주소
+// 서버 주소
 import { keys } from '../../env'
 
-
-
-
-
-
-// Python Flask
-// Python Flask
-// Python Flask
-// Python Flask
-// Python Flask
-// Python Flask
-// Python Flask
-
-
-
-// 서버로부터 이미지를 가져오는 함수
+/**
+ * 서버로부터 이미지를 가져오는 함수
+ * @returns {Promise<Object>} - 서버에서 받은 이미지 데이터
+ * @throws Will throw an error if the request fails.
+ */
 export const fetchImages = async () => {
     try {
         const response = await fetch(`${keys.flaskURL}/capture`);
@@ -33,8 +22,12 @@ export const fetchImages = async () => {
     }
 }
 
-
-// 서버로부터 이미지를 색상 패치
+/**
+ * 서버로부터 이미지를 색상 패치
+ * @param {Object} imageData - 이미지 데이터
+ * @returns {Promise<Object>} - 색상 정보
+ * @throws Will throw an error if the request fails.
+ */
 export const fetchColor = async (imageData) => {
     try {
         const response = await fetch(`${keys.flaskURL}/color`, {
@@ -55,8 +48,12 @@ export const fetchColor = async (imageData) => {
     }
 }
 
-
-// 서버로부터 상태를 받음
+/**
+ * 서버로부터 상태를 받음
+ * @param {Object} asset - 자산 데이터
+ * @returns {Promise<Object>} - 상태 정보
+ * @throws Will throw an error if the request fails.
+ */
 export const fetchCondition = async (asset) => {
     try {
         const response = await fetch(`${keys.flaskURL}/condition`, {
@@ -77,23 +74,12 @@ export const fetchCondition = async (asset) => {
     }
 }
 
-
-
-
-
-
-
-
-// Node JS
-// Node JS
-// Node JS
-// Node JS
-// Node JS
-// Node JS
-// Node JS
-
-
-// /getInfo에 GET 요청 보내기 
+/**
+ * /getInfo에 GET 요청 보내기
+ * @param {Object} data - 요청 데이터
+ * @returns {Promise<Object>} - 자산 정보
+ * @throws Will throw an error if the request fails.
+ */
 export const getInfos = async (data) => {
     try {
         const response = await axios.post(`${keys.nodeURL}/getInfo`, data);
@@ -104,7 +90,11 @@ export const getInfos = async (data) => {
     }
 }
 
-// /getColor에 GET 요청 보내기
+/**
+ * /getColor에 GET 요청 보내기
+ * @returns {Promise<Object>} - 색상 정보
+ * @throws Will throw an error if the request fails.
+ */
 export const getColors = async () => {
     try {
         const response = await axios.get(`${keys.nodeURL}/getColor`);
@@ -115,7 +105,11 @@ export const getColors = async () => {
     }
 }
 
-// /getInfo에 GET 요청 보내기 
+/**
+ * /getScrapingAssets에 GET 요청 보내기
+ * @returns {Promise<Object>} - 스크래핑된 자산 리스트
+ * @throws Will throw an error if the request fails.
+ */
 export const getPrices = async () => {
     try {
         const response = await axios.get(`${keys.nodeURL}/getScrapingAssets`);
@@ -126,7 +120,12 @@ export const getPrices = async () => {
     }
 }
 
-
+/**
+ * 자산 추가
+ * @param {Object} data - 자산 데이터
+ * @returns {Promise<Object>} - 자산 추가 결과
+ * @throws Will throw an error if the request fails.
+ */
 export const addAsset = async (data) => {
     try {
         const response = await axios.post(`${keys.nodeURL}/addAsset`, data);

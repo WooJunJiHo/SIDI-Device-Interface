@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { LineChart } from "react-native-gifted-charts";
 import { Dimensions } from 'react-native';
@@ -10,10 +10,10 @@ import { subtractMaxValue } from '../utils/filterPriceList'
 
 const Chart = (props) => {
   const ptData = props.ptData
-  
+
   const maxValue = subtractMaxValue(ptData)
 
-  const spacing = 520 / ptData.length;
+  const spacing = 520 / ptData.length - 5;
 
   return (
     <View
@@ -32,11 +32,12 @@ const Chart = (props) => {
         rulesType="none"
         color="#00FF80"
         thickness={6}
-        startOpacity={0}
-        endOpacity={0}
+        startOpacity={200}
+        startFillColor1='#CE9FFC'
+        endOpacity={100}
         initialSpacing={36}
         noOfSections={6}
-        maxValue={maxValue + (maxValue*1)}
+        maxValue={maxValue + (maxValue * 1)}
         yAxisThickness={0}
         rulesColor="#fafafa"
         xAxisThickness={0}
@@ -75,7 +76,7 @@ const Chart = (props) => {
                 <Text style={{ color: '#111111', fontSize: 14, marginBottom: 10, textAlign: 'center' }}>
                   {items[0].date}
                 </Text>
-                
+
 
                 <View style={{ paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16, backgroundColor: '#6C60F1', width: 90 }}>
                   <Text style={{ fontWeight: 'bold', textAlign: 'center', color: '#FFFFFF' }}>
